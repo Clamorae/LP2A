@@ -1,3 +1,4 @@
+import java.lang.Math;
 
 public class boardGame {
 	Lcase RStart;
@@ -12,5 +13,10 @@ public class boardGame {
 		this.GStart=g;
 		this.YStart=y;
 		this.dice=0;
+	}
+	
+	private static int rollDice(){
+		int value= (int)(Math.random()*0+6);
+		return value;
 	}
 }
