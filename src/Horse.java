@@ -1,9 +1,14 @@
 public class Horse {
     private Player player;
-    private int position;
+    private int X;
+    private int Y;
     private Section currentSection;
 
-    public void moveForward(int dice){//tatakae, tatakae
+    Horse(Player Player){
+        this.player=Player;
+    }
+
+    public void moveForward(int dice){
 
     }
 
