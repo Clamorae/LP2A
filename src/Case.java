@@ -1,12 +1,12 @@
 import java.awt.*;
 
 public class Case {
-    private int type;
+    private String type;
     private int nHorses;
     private int X;
     private int Y;
 
-    Case (int type, int X, int Y){
+    Case (String type, int X, int Y){
         this.type=type;
         this.X=X;
         this.Y=Y;
