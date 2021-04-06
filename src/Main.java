@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Main{
 
-    public static void main(String[]args){
+    public static void initializeGB(){
         int x = 6;
         int y;
         int i=0;
@@ -106,6 +106,35 @@ public class Main{
         }
         Section yellowLadder = new Section("yellowLadder",Color.yellow,Ladder);
 
+        Case[] Home = new Case[4];
+        Home[0]=new Case(4,2,2);
+        Home[1]=new Case(4,4,2);
+        Home[2]=new Case(4,4,4);
+        Home[3]=new Case(4,2,4);
+        Section blueHome = new Section("blueHome",Color.blue,Home);
+
+        Home[0]=new Case(4,2,10);
+        Home[1]=new Case(4,4,10);
+        Home[2]=new Case(4,4,12);
+        Home[3]=new Case(4,2,12);
+        Section redHome = new Section("redHome",Color.red,Home);
+
+        Home[0]=new Case(4,10,10);
+        Home[1]=new Case(4,12,10);
+        Home[2]=new Case(4,12,12);
+        Home[3]=new Case(4,10,12);
+        Section greenHome = new Section("greenHome",Color.green,Home);
+
+        Home[0]=new Case(4,10,2);
+        Home[1]=new Case(4,12,2);
+        Home[2]=new Case(4,12,4);
+        Home[3]=new Case(4,10,4);
+        Section yellowHome = new Section("yellowHome",Color.yellow,Home);
+
+        yellowHome.next=yellowSection;
+        blueHome.next=blueSection;
+        redHome.next=redSection;
+        greenHome.next=greenSection;
         yellowSection.next=blueSection;
         yellowSection.nextLadder=blueLadder;
         blueSection.next=redSection;
@@ -115,5 +144,15 @@ public class Main{
         greenSection.next=yellowSection;
         greenSection.nextLadder=yellowLadder;
 
+
+        Player blue = new Player(Color.blue);
+        Player red = new Player(Color.red );
+        Player yellow = new Player(Color.yellow);
+        Player green = new Player(Color.green);
+
+    }
+
+    public static void main(String[]args){
+        initializeGB();
     }
 }
