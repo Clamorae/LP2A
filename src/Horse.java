@@ -4,5 +4,4 @@ public class Horse {
     private Section currentSection;
     private int n;
 
-
 }
