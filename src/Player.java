@@ -5,6 +5,7 @@ public class Player {
     private int score;
 
     Player(Color color){
+        this.score=0;
         this.color=color;
     }
 }
