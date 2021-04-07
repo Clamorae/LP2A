@@ -6,7 +6,6 @@ import java.util.Random;
 public class GameBoard {
     private final Random dice = new Random();
     private HashMap<Color, Section[]> sections;
-
     GameBoard() {
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
         this.sections = new HashMap<>();
@@ -17,6 +16,11 @@ public class GameBoard {
             secArray[0] = new Section("Home", "Home" + temp, temp, secArray[1]);
             sections.put(temp, secArray);
         }
+
+    }
+
+    private void RollDice(Random dice){
+        dice.nextInt();
     }
 
 }
