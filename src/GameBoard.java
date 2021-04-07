@@ -9,6 +9,7 @@ public class GameBoard {
 
     GameBoard() {
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
+        this.sections = new HashMap<>();
         for (Color temp : colorArray) {
             Section[] secArray = new Section[3];
             secArray[2] = new Section("Ladder", "Ladder" + temp, temp, null);
