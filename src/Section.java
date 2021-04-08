@@ -1,14 +1,15 @@
 import java.awt.*;
 
 public class Section{
-    private String label;
+    private String type;
     private Color color;
     public Section next;
+    public Section nextLadder;
     private Case[] cases;
 
-    Section(String type, String label, Color color, Section next){
+    public Section(String type, Color color, Section next, Section nextLadder){
         this.next = next;
-        this.label = label;
+        this.type = type;
         this.color = color;
         switch (type) {
             case "Home" -> {
@@ -39,7 +40,23 @@ public class Section{
     void setNext(Section section){
         this.next = section;
     }
+    Case[] getCases(){return this.cases;}
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
 
 
