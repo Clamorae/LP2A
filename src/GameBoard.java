@@ -17,6 +17,11 @@ public class GameBoard {
             secArray[0] = new Section("Home", temp, secArray[1],null);
             sections.put(temp, secArray);
         }
+
+    }
+
+    private void RollDice(Random dice){
+        dice.nextInt();
     }
 
 }
