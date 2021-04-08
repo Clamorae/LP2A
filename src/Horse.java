@@ -1,6 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public class Horse {
     private int x;
@@ -58,6 +59,12 @@ public class Horse {
         }else{
             return false;
         }
+    }
+
+    private void backHome(Color color, HashMap< Color,Section[]>section){
+        this.currentSection=section.get(color)[0];
+        this.x=0;
+        this.y=0;
     }
 
 }
