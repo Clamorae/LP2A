@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
 
 public class Horse {
@@ -14,47 +16,48 @@ public class Horse {
         this.n = n;
     }
 
-    public void tatakae(int dice){
-        if(this.currentSection.getType().equals("Home")){
-            if(dice == 6){
-                this.currentSection = this.currentSection.next;
-                this.n = 0;
-                dice = 0;
-            }
-        }else {
-            while (dice != 0){
-                switch (canTatakae(this.currentSection.getCases()[n+1],this.currentSection, this.color)) {
-                    case "Won":
-                        //do stuff
-                        break;
-                    case "Yes":
-                        //do other stuff
-                        break;
-                    case "No":
-                        //do more stuff
-                        break;
-                }
-                dice--;
-            }
-        }
-
-
+    private boolean isCaseReal(Section section, int n){
+        return section.getCases().length > n;
     }
-
-    private String canTatakae(Case nextCase, Section currentSection, Color color){
-        if(nextCase == null){
-            if(currentSection.nextLadder == null){
-                return "Won";
-            }else if(currentSection.next.getColor().equals(color)){
-                currentSection = currentSection.nextLadder;
-            }else{
-                currentSection = currentSection.next;
-            }
-        }
-        if(nextCase.getHorses()[0]==null || nextCase.getHorses()[1]==null){
-            return "Yes";
+    private Section getNextSection(Section current, Color color){
+        if (current.next.getColor().equals(color)){
+            return current.nextLadder;
         }else{
-            return "No";
+            return current.next;
         }
     }
+
+    private  boolean isCaseAvailable(Case _case){
+        return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
+    }
+
+    public void win(){}
+    public void lose(){}
+
+    public boolean moveOne(){
+        Section newSection;
+        int newN;
+        if(isCaseReal(this.currentSection,this.n+1)){
+            newSection = currentSection;
+            newN = this.n+1;
+        }else{
+            newSection = getNextSection(this.currentSection, this.color);
+            newN = 0;
+            if(newSection == null){
+                win();
+                return false;
+            }
+
+        }
+        if(isCaseAvailable(newSection.getCases()[newN])){
+            this.currentSection = newSection;
+            this.n = newN;
+            this.x = newSection.getCases()[newN].getX();
+            this.y = newSection.getCases()[newN].getY();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
