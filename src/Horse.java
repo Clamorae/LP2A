@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -33,7 +32,6 @@ public class Horse {
     }
 
     public void win(){}
-    public void lose(){}
 
     public boolean moveOne(){
         Section newSection;
