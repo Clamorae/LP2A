@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 public class Case {
     private String type;
@@ -43,6 +44,16 @@ public class Case {
 
     public void setY(int y) {
         Y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "Case{" + "\n" +
+                "   type='" + type + '\'' + "\n" +
+                "   horses=" + Arrays.toString(horses) + "\n" +
+                "   X=" + X + "\n" +
+                "   Y=" + Y + "\n" +
+                '}' +  "\n";
     }
 }
 

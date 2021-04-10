@@ -10,9 +10,10 @@ public class Horse {
     private Section currentSection;
     private int n;
 
-    public Horse(int x, int y, Section startSec, int n){
+    public Horse(int x, int y, Section startSec, int n, Color color){
         this.x = x;
         this.y = y;
+        this.color = color;
         this.currentSection = startSec;
         this.n = n;
     }
@@ -33,7 +34,6 @@ public class Horse {
     }
 
     public void win(){}
-    public void lose(){}
 
     public boolean moveOne(){
         Section newSection;
@@ -67,4 +67,34 @@ public class Horse {
         this.y=0;
     }
 
+    public boolean setTo(Section section, int n){
+        Horse[] array = this.currentSection.getCases()[this.n].getHorses();
+        for(Horse temp : array){
+            if (temp == this){
+                temp = null;
+            }
+        }
+        this.currentSection = section;
+        this.n = n;
+        array = this.currentSection.getCases()[this.n].getHorses();
+        for(int i=0;i<2;i++){
+            if (array[i] == null){
+                System.out.print("Cheval Posé");
+                array[i] = this;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Horse{" + "\n" +
+                "   x=" + x + "\n" +
+                "   y=" + y + "\n" +
+                "   color=" + color + "\n" +
+                "   currentSection=" + currentSection.getType() + currentSection.getColor().toString() + "\n" +
+                "   n=" + n + "\n" +
+                '}' + "\n";
+    }
 }

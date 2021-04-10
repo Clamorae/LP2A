@@ -11,6 +11,7 @@ public class GameBoard {
     public GameBoard() {
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
         this.sections = new HashMap<>();
+        this.players = new Player[4];
         int i=0;
         for (Color temp : colorArray) {
             Section[] secArray = new Section[3];
@@ -24,8 +25,24 @@ public class GameBoard {
 
     }
 
-    private void RollDice(Random dice){
-        dice.nextInt();
+    public Player[] getPlayers() {
+        return players;
     }
 
+    public HashMap<Color, Section[]> getSections() {
+         return sections;
+    }
+
+    private int RollDice(Random dice){
+        return dice.nextInt();
+    }
+
+    @Override
+    public String toString() {
+        return "GameBoard{" + "\n" +
+                "   dice=" + dice + "\n" +
+                "   players=" + Arrays.toString(players) + "\n" +
+                "   sections=" + sections + "\n" +
+                '}' + "\n";
+    }
 }

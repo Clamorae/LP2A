@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 public class Section{
     private String type;
@@ -9,6 +10,7 @@ public class Section{
 
     public Section(String type, Color color, Section next, Section nextLadder){
         this.next = next;
+        this.nextLadder = nextLadder;
         this.type = type;
         this.color = color;
         switch (type) {
@@ -56,6 +58,17 @@ public class Section{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "   type='" + type + '\'' + "\n" +
+                "   color=" + color + "\n" +
+                "   next=" + next + "\n" +
+                "   nextLadder=" + nextLadder + "\n" +
+                "   cases=" + Arrays.toString(cases) + "\n" +
+                '}' + "\n";
     }
 }
 
