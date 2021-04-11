@@ -1,4 +1,30 @@
-import java.awt.*;
+import javax.swing.*;
+/* import java.awt.*; */
+
+public class First {
+
+    public static void main(String[] args)
+    {
+
+        JFrame fenetre = new JFrame();
+        fenetre.setTitle("Ludo game");
+        fenetre.setSize(780, 630);
+        fenetre.setLocationRelativeTo(null);
+        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        Icon Back = new ImageIcon("Board.png");
+        JLabel BackGround = new JLabel();
+        BackGround.setIcon(Back);
+
+        ButtonModel Roll = new DefaultButtonModel();
+
+        fenetre.add(BackGround);
+        fenetre.setVisible(true);
+    }
+}
+
+/*import java.awt.*;
 import java.awt.event.*;
 
 public class First extends Frame  {
@@ -6,24 +32,16 @@ public class First extends Frame  {
     private Image image;
 
     First() {
-        super("");
-        try {
-            MediaTracker mt = new MediaTracker (this);
-            image = Toolkit.getDefaultToolkit().getImage("BG.png");
-            mt.addImage(image, 0);
-            mt.waitForID(0);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        super("test");
+        MediaTracker mt = new MediaTracker (this);
+        image = Toolkit.getDefaultToolkit().getImage("BG.png");
+        mt.addImage(image, 0);
+
 
         setLayout(new FlowLayout());
 
-        add(new TextField(10));
         add(new Button("hello"));
-        add(new List(20));
-        add(new TextArea(20,20));
-        setSize(449, 451);
+        setSize(449, 455);
 
         addWindowListener
                 (new WindowAdapter() {
@@ -34,6 +52,9 @@ public class First extends Frame  {
                      }
                  }
                 );
+        (new windowAdapter(){
+
+        })
     }
 
     public void update( Graphics g) {
@@ -61,4 +82,4 @@ public class First extends Frame  {
         First iframe = new First();
         iframe.setVisible(true);
     }
-}
+}*/
