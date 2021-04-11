@@ -1,7 +1,7 @@
 import javax.swing.*;
-/* import java.awt.*; */
+import java.awt.*;
 
-public class First {
+/*public class First {
 
     public static void main(String[] args)
     {
@@ -17,14 +17,18 @@ public class First {
         JLabel BackGround = new JLabel();
         BackGround.setIcon(Back);
 
-        ButtonModel Roll = new DefaultButtonModel();
+        JButton Roll = new JButton("Roll the dice");
 
+
+        fenetre.add(Roll);
+        Roll.setLayout(new FlowLayout(FlowLayout.RIGHT));
         fenetre.add(BackGround);
+        BackGround.setLayout(new FlowLayout(FlowLayout.LEFT));
+
         fenetre.setVisible(true);
     }
-}
+}*/
 
-/*import java.awt.*;
 import java.awt.event.*;
 
 public class First extends Frame  {
@@ -32,7 +36,7 @@ public class First extends Frame  {
     private Image image;
 
     First() {
-        super("test");
+        super("Ludo Game");
         MediaTracker mt = new MediaTracker (this);
         image = Toolkit.getDefaultToolkit().getImage("BG.png");
         mt.addImage(image, 0);
@@ -40,46 +44,28 @@ public class First extends Frame  {
 
         setLayout(new FlowLayout());
 
-        add(new Button("hello"));
-        setSize(449, 455);
+        Button Roll = new Button("Roll the dice");
+
+        add(Roll);
+
+        setSize(600, 479);
 
         addWindowListener
                 (new WindowAdapter() {
                      public void windowClosing(WindowEvent e) {
-                         // change this for an Applet
                          System.out.println("Bye.");
                          System.exit(0);
                      }
                  }
                 );
-        (new windowAdapter(){
-
-        })
-    }
-
-    public void update( Graphics g) {
-        paint(g);
     }
 
     public void paint(Graphics g) {
-        if(image != null) {
-            int x, y = 0;
-            while(y < getSize().height) {
-                x = 0;
-                while(x< getSize().width) {
-                    g.drawImage(image, x, y, this);
-                    x= x + image.getWidth(null);
-                }
-                y = y + image.getHeight(null);
-            }
-        }
-        else {
-            g.clearRect(0, 0, getSize().width, getSize().height);
-        }
+        g.drawImage(image,0,28,this);
     }
 
     static public void main(String[] args) {
         First iframe = new First();
         iframe.setVisible(true);
     }
-}*/
+}
