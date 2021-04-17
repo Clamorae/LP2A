@@ -20,9 +20,10 @@ public class Horse {
     private boolean isCaseReal(Section section, int n){
         return section.getCases().length > n;
     }
+
     private Section getNextSection(Section current, Color color){
         if (current.next.getColor().equals(color)){
-            return current.nextLadder;
+            return current.next.nextLadder;
         }else{
             return current.next;
         }
@@ -50,18 +51,27 @@ public class Horse {
 
         }
         if(isCaseAvailable(newSection.getCases()[newN])){
-            this.currentSection = newSection;
-            this.n = newN;
-            this.x = newSection.getCases()[newN].getX();
-            this.y = newSection.getCases()[newN].getY();
+            setTo(newSection,newN);
             return true;
         }else{
             return false;
         }
     }
 
-    private void backHome(Color color, HashMap< Color,Section[]>section){
-        this.currentSection=section.get(color)[0];
+    public void moveForward(int dr){
+        if(this.currentSection.getType().equals("Home")){
+            if(dr == 6){
+                setTo(this.currentSection.next, 0);
+            }
+        }else{
+            while(dr != 0 && this.moveOne()){
+                dr--;
+            }
+        }
+    }
+
+    private void backHome(HashMap< Color,Section[]>section){
+        this.currentSection=section.get(this.color)[0];
         this.x=0;
         this.y=0;
     }

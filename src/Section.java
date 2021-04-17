@@ -22,7 +22,7 @@ public class Section{
             }
             case "Ladder" -> {
                 this.cases = new Case[6];
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 6; i++) {
                     this.cases[i] = new Case("Safe", 0, 0);
                 }
             }
@@ -32,7 +32,7 @@ public class Section{
                     this.cases[i] = new Case("Normal", 0, 0);
                 }
                 this.cases[9] = new Case("Safe", 0, 0);
-                for (int i = 10; i < 13; i++) {
+                for (int i = 10; i < 14; i++) {
                     this.cases[i] = new Case("Normal", 0, 0);
                 }
             }
@@ -65,8 +65,8 @@ public class Section{
         return "Section{" +
                 "   type='" + type + '\'' + "\n" +
                 "   color=" + color + "\n" +
-                "   next=" + next + "\n" +
-                "   nextLadder=" + nextLadder + "\n" +
+                //"   next=" + next.getType() + " " + next.getColor() + "\n" +
+                //"   nextLadder=" + nextLadder.getType() + " " + nextLadder.getColor() + "\n" +
                 "   cases=" + Arrays.toString(cases) + "\n" +
                 '}' + "\n";
     }
