@@ -6,6 +6,7 @@ public class Main{
         gb.getPlayers()[0].getHorse()[0].setTo(gb.getSections().get(Color.blue)[1],5);
         System.out.print("hello");
         System.out.println(gb);
+        AWT.init(gb);
     }
 
 }

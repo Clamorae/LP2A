@@ -33,8 +33,8 @@ public class GameBoard {
          return sections;
     }
 
-    public int RollDice(Random dice){
-        return dice.nextInt();
+    public void RollDice(){
+         this.dice.nextInt();
     }
 
     @Override
