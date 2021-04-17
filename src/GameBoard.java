@@ -22,6 +22,15 @@ public class GameBoard {
             players[i]=new Player(temp,sections);
             i++;
         }
+        Section blue = this.sections.get(Color.BLUE)[1];
+        Section red = this.sections.get(Color.RED)[1];
+        Section green = this.sections.get(Color.GREEN)[1];
+        Section yellow = this.sections.get(Color.YELLOW)[1];
+        blue.next = red;
+        red.next = green;
+        green.next = yellow;
+        yellow.next = blue;
+
 
     }
 
@@ -33,9 +42,13 @@ public class GameBoard {
          return sections;
     }
 
-    public void RollDice(){
-         this.dice.nextInt();
+
+    public int RollDice() {
+        int i = this.dice.nextInt();
+        return i;
     }
+
+
 
     @Override
     public String toString() {
