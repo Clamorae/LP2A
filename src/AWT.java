@@ -1,7 +1,8 @@
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-/*public class First {
+/*import java.swing.*
+public class First {
 
     public static void main(String[] args)
     {
@@ -29,26 +30,27 @@ import java.awt.*;
     }
 }*/
 
-import java.awt.event.*;
 
-public class First extends Frame  {
+public class AWT extends Frame implements ActionListener  {
 
-    private Image image;
+    private final Image image;
 
-    First() {
+    AWT() {
         super("Ludo Game");
+        setLayout(new FlowLayout());
         MediaTracker mt = new MediaTracker (this);
         image = Toolkit.getDefaultToolkit().getImage("BG.png");
         mt.addImage(image, 0);
 
 
-        setLayout(new FlowLayout());
+
 
         Button Roll = new Button("Roll the dice");
-
+        Roll.addActionListener(this);
         add(Roll);
 
-        setSize(600, 479);
+        setSize(600, 487);
+        setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         addWindowListener
                 (new WindowAdapter() {
@@ -65,7 +67,12 @@ public class First extends Frame  {
     }
 
     static public void main(String[] args) {
-        First iframe = new First();
+        AWT iframe = new AWT();
         iframe.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Roses are red, Violets are blue and Dice is rolling");
     }
 }
