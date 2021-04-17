@@ -1,35 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
-
-/*import java.swing.*
-public class First {
-
-    public static void main(String[] args)
-    {
-
-        JFrame fenetre = new JFrame();
-        fenetre.setTitle("Ludo game");
-        fenetre.setSize(780, 630);
-        fenetre.setLocationRelativeTo(null);
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        Icon Back = new ImageIcon("Board.png");
-        JLabel BackGround = new JLabel();
-        BackGround.setIcon(Back);
-
-        JButton Roll = new JButton("Roll the dice");
-
-
-        fenetre.add(Roll);
-        Roll.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        fenetre.add(BackGround);
-        BackGround.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        fenetre.setVisible(true);
-    }
-}*/
-
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
 
 public class AWT extends Frame implements ActionListener  {
 
@@ -45,13 +17,15 @@ public class AWT extends Frame implements ActionListener  {
         super("Ludo Game");
         this.gb=gb;
         setLayout(new FlowLayout());
-        MediaTracker mt = new MediaTracker (this);
+        //MediaTracker mt = new MediaTracker (this);
         image = Toolkit.getDefaultToolkit().getImage("BG.png");
         red = Toolkit.getDefaultToolkit().getImage("RedHorse.png");
         blue = Toolkit.getDefaultToolkit().getImage("BlueHorse.png");
         green = Toolkit.getDefaultToolkit().getImage("GreenHorse.png");
         yellow = Toolkit.getDefaultToolkit().getImage("YellowHorse.png");
-        mt.addImage(image, 0);
+        //mt.addImage(image, 0);
+        paint(g);
+        move(g,blue,15,15);
 
 
 
@@ -75,7 +49,7 @@ public class AWT extends Frame implements ActionListener  {
         g.drawImage(image,0,28,this);
     }
 
-    public void Move(Graphics g,Image image, int X, int Y) {
+    public void move(Graphics g,Image image,int X,int Y) {
         g.drawImage(image,X,Y,this);
     }
 
