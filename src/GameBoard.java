@@ -42,7 +42,7 @@ public class GameBoard {
          return sections;
     }
 
-    private int RollDice(Random dice){
+    public int RollDice(Random dice){
         return dice.nextInt();
     }
 
