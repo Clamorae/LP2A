@@ -42,9 +42,13 @@ public class GameBoard {
          return sections;
     }
 
-    public int RollDice(){
-        return this.dice.nextInt();
+
+    public int RollDice() {
+        int i = this.dice.nextInt();
+        return i;
     }
+
+
 
     @Override
     public String toString() {

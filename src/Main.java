@@ -69,6 +69,9 @@ public class Main{
         horse.moveForward(5);
         horse.moveForward(5);
         System.out.print("hello");
+        System.out.println(gb);
+        AWT.init(gb);
+
     }
 
 }
