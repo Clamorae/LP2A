@@ -95,6 +95,11 @@ public class First {
 }
 
 
+=======
+import java.awt.event.*;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+>>>>>>> 7a2a4c38d7599d1b9423ec29a80a5bc18f8e26b1
 
 public class AWT extends Frame implements ActionListener  {
 
@@ -110,13 +115,15 @@ public class AWT extends Frame implements ActionListener  {
         super("Ludo Game");
         this.gb=gb;
         setLayout(new FlowLayout());
-        MediaTracker mt = new MediaTracker (this);
+        //MediaTracker mt = new MediaTracker (this);
         image = Toolkit.getDefaultToolkit().getImage("BG.png");
         red = Toolkit.getDefaultToolkit().getImage("RedHorse.png");
         blue = Toolkit.getDefaultToolkit().getImage("BlueHorse.png");
         green = Toolkit.getDefaultToolkit().getImage("GreenHorse.png");
         yellow = Toolkit.getDefaultToolkit().getImage("YellowHorse.png");
-        mt.addImage(image, 0);
+        //mt.addImage(image, 0);
+        paint(g);
+        move(g,blue,15,15);
 
 
 
@@ -140,7 +147,7 @@ public class AWT extends Frame implements ActionListener  {
         g.drawImage(image,0,28,this);
     }
 
-    public void Move(Graphics g,Image image, int X, int Y) {
+    public void move(Graphics g,Image image,int X,int Y) {
         g.drawImage(image,X,Y,this);
     }
 
