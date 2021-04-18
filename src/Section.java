@@ -48,7 +48,7 @@ public class Section{
                     int[] xPos = {35,122,35,122};
                     int[] yPos = {85,85,175,175};
                     Vector finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
-                    this.cases[i] = new Case("Home", 0, 0);
+                    this.cases[i] = new Case("Home", finalPos.x, finalPos.y);
                 }
             }
             case "Ladder" -> {

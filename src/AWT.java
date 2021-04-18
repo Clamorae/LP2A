@@ -1,7 +1,71 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-/*import java.swing.*
+public class AWT extends JFrame{
+
+    public AWT(){
+        super("Yolo");
+
+        WindowListener l = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        };
+
+        JPanel pan = new JPanel();
+        JLabel picLabel = new JLabel(new ImageIcon("BlueHorse.png"));
+
+
+        setContentPane(pan);
+        pan.add(picLabel);
+        addWindowListener(l);
+        setSize(500,500);
+        setVisible(true);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 public class First {
 
     public static void main(String[] args)
@@ -28,7 +92,8 @@ public class First {
 
         fenetre.setVisible(true);
     }
-}*/
+}
+
 
 
 public class AWT extends Frame implements ActionListener  {
@@ -90,4 +155,4 @@ public class AWT extends Frame implements ActionListener  {
         System.out.println("Roses are red, Violets are blue and Dice is rolling");
         gb.RollDice();
     }
-}
+}*/
