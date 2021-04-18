@@ -7,13 +7,13 @@ public class Section{
     public Section next;
     public Section nextLadder;
     private Case[] cases;
-    private Vector origin;
-    private Vector x;
-    private Vector y;
+    private Vect origin;
+    private Vect x;
+    private Vect y;
 
-    private Vector getPosition(Vector origin, Vector xVec, Vector yVec, int x, int y){
-        Vector xToAdd = xVec.times(x);
-        Vector yToAdd = yVec.times(y);
+    private Vect getPosition(Vect origin, Vect xVec, Vect yVec, int x, int y){
+        Vect xToAdd = xVec.times(x);
+        Vect yToAdd = yVec.times(y);
         return origin.add(xToAdd.add(yToAdd));
     }
 
@@ -24,21 +24,21 @@ public class Section{
         this.color = color;
 
         if (Color.GREEN.equals(color)) {
-            this.origin = new Vector(238, 0);
-            this.x = new Vector(0, 1);
-            this.y = new Vector(-1, 0);
+            this.origin = new Vect(238, 0);
+            this.x = new Vect(0, 1);
+            this.y = new Vect(-1, 0);
         } else if (Color.YELLOW.equals(color)) {
-            this.origin = new Vector(448, 239);
-            this.x = new Vector(-1, 0);
-            this.y = new Vector(-1, 0);
+            this.origin = new Vect(448, 239);
+            this.x = new Vect(-1, 0);
+            this.y = new Vect(-1, 0);
         } else if (Color.BLUE.equals(color)) {
-            this.origin = new Vector(211, 450);
-            this.x = new Vector(0, -1);
-            this.y = new Vector(1, 0);
+            this.origin = new Vect(211, 450);
+            this.x = new Vect(0, -1);
+            this.y = new Vect(1, 0);
         } else {
-            this.origin = new Vector(0, 212);
-            this.x = new Vector(1, 0);
-            this.y = new Vector(0, 1);
+            this.origin = new Vect(0, 212);
+            this.x = new Vect(1, 0);
+            this.y = new Vect(0, 1);
         }
 
         switch (type) {
@@ -47,7 +47,7 @@ public class Section{
                 for(int i = 0; i<4;i++){
                     int[] xPos = {35,122,35,122};
                     int[] yPos = {85,85,175,175};
-                    Vector finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    Vect finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
                     this.cases[i] = new Case("Home", finalPos.x, finalPos.y);
                 }
             }

@@ -8,6 +8,7 @@ public class Horse {
     private Color color;
     private Section currentSection;
     private int n;
+    private boolean isWin;
 
     public Horse(int x, int y, Section startSec, int n, Color color){
         this.x = x;
@@ -15,6 +16,7 @@ public class Horse {
         this.color = color;
         this.currentSection = startSec;
         this.n = n;
+        this.isWin = false;
     }
 
     private boolean isCaseReal(Section section, int n){
@@ -22,7 +24,9 @@ public class Horse {
     }
 
     private Section getNextSection(Section current, Color color){
-        if (current.next.getColor().equals(color)){
+        if(current.next == null){
+            return null;
+        }else if (current.next.getColor().equals(color)){
             return current.next.nextLadder;
         }else{
             return current.next;
@@ -33,7 +37,14 @@ public class Horse {
         return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
     }
 
-    public void win(){}
+    public void win(){
+        Horse[] horses = this.currentSection.getCases()[n].getHorses();
+        for(int i = 0; i<2; i++){
+            if(horses[i] == this){
+                horses[i] = null;
+            }
+        }this.isWin = true;
+    }
 
     public boolean moveOne(){
         Section newSection;
@@ -61,7 +72,7 @@ public class Horse {
     public void moveForward(int dr){
         if(this.currentSection.getType().equals("Home")){
             if(dr == 6){
-                setTo(this.currentSection.next, 0);
+                setTo(this.currentSection.next, 1);
             }
         }else{
             while(dr != 0 && this.moveOne()){
@@ -105,5 +116,9 @@ public class Horse {
                 "   currentSection=" + currentSection.getType() + currentSection.getColor().toString() + "\n" +
                 "   n=" + n + "\n" +
                 '}' + "\n";
+    }
+
+    public boolean isWin() {
+        return this.isWin;
     }
 }
