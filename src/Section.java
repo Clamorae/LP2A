@@ -54,8 +54,11 @@ public class Section{
             }
             case "Ladder" -> {
                 this.cases = new Case[6];
+                int[] yPos = {173,145,118-3,89-3,63-3,43};
+                Vect finalPos;
                 for (int i = 0; i < 6; i++) {
-                    this.cases[i] = new Case("Safe", 0, 0);
+                    finalPos = getPosition(this.origin,this.x,this.y,200,yPos[i]);
+                    this.cases[i] = new Case("Safe", finalPos.x, finalPos.y);
                 }
             }
             case "Normal" -> {

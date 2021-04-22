@@ -3,7 +3,7 @@ import javax.swing.*;
 public class Gui extends JFrame {
     private JLayeredPane masterPan;
     private JPanel bgPan;
-    private JPanel horsePan;
+    private JLayeredPane horsePan;
     private JTextArea console;
     private int nOfLines;
     private JPanel dicePan;
@@ -26,7 +26,7 @@ public class Gui extends JFrame {
         this.bgPan.add(bgLab);
         this.masterPan.add(bgPan, Integer.valueOf(1));
 
-        this.horsePan = new JPanel();
+        this.horsePan = new JLayeredPane();
         horsePan.setOpaque(false);
         horsePan.setLayout(null);
         this.horsePan.setBounds(0,0,450,460);
@@ -66,6 +66,14 @@ public class Gui extends JFrame {
         }else {
             console.setText(console.getText() + "\n>" + str);
         }
+    }
+
+    public void top(Horse h){
+        this.horsePan.setLayer(h.getPan(),2);
+    }
+
+    public void bottom(Horse h){
+        this.horsePan.setLayer(h.getPan(),1);
     }
 
 }

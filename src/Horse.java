@@ -47,7 +47,7 @@ public class Horse {
         this.horsePan.setBounds(this.x,this.y,49,49);
         this.horsePan.setOpaque(false);
         this.horsePan.setVisible(true);
-        this.horsePan.add(horseLab);
+        this.horsePan.add(horseLab, Integer.valueOf(1));
     }
 
     private boolean isCaseReal(Section section, int n){
@@ -100,6 +100,7 @@ public class Horse {
             setTo(newSection,newN);
             return true;
         }else{
+            System.out.println("erreur");
             return false;
         }
     }
@@ -129,9 +130,9 @@ public class Horse {
 
     public boolean setTo(Section section, int n){
         Horse[] array = this.currentSection.getCases()[this.n].getHorses();
-        for(Horse temp : array){
-            if (temp == this){
-                temp = null;
+        for(int i=0;i<2;i++){
+            if (array[i] == this){
+                array[i] = null;
             }
         }
         this.currentSection = section;
