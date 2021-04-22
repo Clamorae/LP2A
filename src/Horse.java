@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 public class Horse {
+    private boolean playable;
+    private int dice;
     private int x;
     private int y;
     private Color color;
@@ -16,6 +18,8 @@ public class Horse {
 
     public Horse(int x, int y, Section startSec, int n, Color color){
         this.x = x;
+        this.playable = true;
+        this.dice = 6;
         this.y = y;
         this.color = color;
         this.currentSection = startSec;
@@ -35,8 +39,7 @@ public class Horse {
         horseLab.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //moveForward(GameBoard.getDice());
-                backHome(GameBoard.sections);
+                play(dice);
             }
         });
         this.horsePan = new JPanel();
@@ -102,7 +105,7 @@ public class Horse {
 
     public void moveForward(int dr){
         if(this.currentSection.getType().equals("Home")){
-            if(dr == 6){
+            if(dr == 1){
                 setTo(this.currentSection.next, 1);
             }
         }else{
@@ -116,23 +119,11 @@ public class Horse {
         this.currentSection=section.get(this.color)[0];
         this.x=0;
         this.y=0;
-        moveSprite(0,0);
+        moveSprite();
     }
 
-    public void moveSprite(int x, int y){
-        int oldX = this.x;
-        int newX = x;
-        int oldY = this.y;
-        int newY = y;
-        float sectionX = ((float)newX - (float)oldX)/100;
-        float sectionY = ((float)newY - (float)oldY)/100;
-        for(int i=1;i<100;i++){
-            horsePan.setLocation(oldX+(int)sectionX*i+1,oldY+(int)sectionY*i);
-        }
-        this.x = newX;
-        this.y = newY;
-        horsePan.setLocation(this.x,this.y);
-
+    public void moveSprite(){
+        this.horsePan.setLocation(this.x,this.y);
     }
 
     public boolean setTo(Section section, int n){
@@ -144,6 +135,9 @@ public class Horse {
         }
         this.currentSection = section;
         this.n = n;
+        this.x = section.getCases()[n].getX();
+        this.y = section.getCases()[n].getY();
+        this.moveSprite();
         array = this.currentSection.getCases()[this.n].getHorses();
         for(int i=0;i<2;i++){
             if (array[i] == null){
@@ -167,5 +161,20 @@ public class Horse {
 
     public boolean isWin() {
         return this.isWin;
+    }
+
+    public boolean isPlayable() {
+        return playable;
+    }
+
+    public void setPlayable(boolean playable) {
+        this.playable = playable;
+    }
+
+    public void play(int dice){
+        if (this.playable){
+            moveForward(1);
+            //this.playable = false;
+        }
     }
 }

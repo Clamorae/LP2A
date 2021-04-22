@@ -44,10 +44,11 @@ public class Section{
         switch (type) {
             case "Home" -> {
                 this.cases = new Case[4];
+                int[] xPos = {25,112,25,112};
+                int[] yPos = {86,86,174,174};
+                Vect finalPos;
                 for(int i = 0; i<4;i++){
-                    int[] xPos = {25,112,25,112};
-                    int[] yPos = {86,86,174,174};
-                    Vect finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
                     this.cases[i] = new Case("Home", finalPos.x, finalPos.y);
                 }
             }
@@ -58,13 +59,19 @@ public class Section{
                 }
             }
             case "Normal" -> {
-                this.cases = new Case[14];
+                int[] xPos = {172,172,172,172,172,172,141,112,84,55,26,0,0};
+                int[] yPos = {200,173,145,118-3,89-3,63-3,29-3,29-3,29-3,29-3,29-3,29-3,1};
+                this.cases = new Case[13];
+                Vect finalPos;
                 for (int i = 0; i < 9; i++) {
-                    this.cases[i] = new Case("Normal", 0, 0);
+                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    this.cases[i] = new Case("Normal", finalPos.x, finalPos.y);
                 }
-                this.cases[9] = new Case("Safe", 0, 0);
-                for (int i = 10; i < 14; i++) {
-                    this.cases[i] = new Case("Normal", 0, 0);
+                finalPos = getPosition(this.origin,this.x,this.y,xPos[9], yPos[9]);
+                this.cases[9] = new Case("Safe", finalPos.x, finalPos.y);
+                for (int i = 10; i < 13; i++) {
+                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    this.cases[i] = new Case("Normal", finalPos.x, finalPos.y);
                 }
             }
         }

@@ -6,6 +6,7 @@ public class Gui extends JFrame {
     private JPanel bgPan;
     private JPanel horsePan;
     private JTextArea console;
+    private int nOfLines;
     private JLabel dice;
 
     public Gui(){
@@ -32,11 +33,12 @@ public class Gui extends JFrame {
         this.masterPan.add(this.horsePan, Integer.valueOf(2));
 
         this.console = new JTextArea("       [BIENVENUE]");
+        this.nOfLines = 1;
         console.setEditable(false);
         console.setBounds(455,4,140,450);
         this.masterPan.add(this.console, Integer.valueOf(3));
 
-        ImageIcon dicePic = new ImageIcon("RedHorse.png");
+        ImageIcon dicePic = new ImageIcon("Images/RedHorse.png");
         this.dice = new JLabel(dicePic);
         this.dice.setBounds(0,0,50,50);
         this.dice.setVisible(true);
@@ -51,7 +53,13 @@ public class Gui extends JFrame {
     }
 
     public void log(String str){
-        console.setText(console.getText()+"\n>"+str);
+        this.nOfLines++;
+        if (this.nOfLines >= 30){
+            this.nOfLines = 1;
+            console.setText(">"+str);
+        }else {
+            console.setText(console.getText() + "\n>" + str);
+        }
     }
 
 }

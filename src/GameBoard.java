@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class GameBoard {
+    public Gui gui;
     private final Random dice = new Random();
     private static int intDice;
     private Player[] players;
@@ -31,6 +32,7 @@ public class GameBoard {
         red.next = green;
         green.next = yellow;
         yellow.next = blue;
+        this.gui = new Gui();
 
 
     }
@@ -43,8 +45,8 @@ public class GameBoard {
          return sections;
     }
 
-    public static int getDice() {
-        return intDice;
+    public static void rollDice() {
+        //return this.dice.nextInt(6)+1;
     }
 
     public void RollDice() {
