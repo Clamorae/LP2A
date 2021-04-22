@@ -1,6 +1,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 public class Horse {
@@ -30,6 +32,13 @@ public class Horse {
             horsePic = new ImageIcon("YellowHorse.png");
         }
         JLabel horseLab = new JLabel(horsePic);
+        horseLab.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //moveForward(GameBoard.getDice());
+                backHome(GameBoard.sections);
+            }
+        });
         this.horsePan = new JPanel();
         this.horsePan.setBounds(this.x,this.y,49,49);
         this.horsePan.setOpaque(false);
@@ -107,6 +116,7 @@ public class Horse {
         this.currentSection=section.get(this.color)[0];
         this.x=0;
         this.y=0;
+        horsePan.setBounds(this.x,this.y,49,49);
     }
 
     public boolean setTo(Section section, int n){

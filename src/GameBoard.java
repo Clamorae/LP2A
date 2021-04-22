@@ -5,8 +5,9 @@ import java.util.Random;
 
 public class GameBoard {
     private final Random dice = new Random();
+    private static int intDice;
     private Player[] players;
-    public HashMap<Color, Section[]> sections;
+    public static HashMap<Color, Section[]> sections;
 
     public GameBoard() {
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
@@ -42,10 +43,12 @@ public class GameBoard {
          return sections;
     }
 
+    public static int getDice() {
+        return intDice;
+    }
 
-    public int RollDice() {
-        int i = this.dice.nextInt();
-        return i;
+    public void RollDice() {
+        intDice = this.dice.nextInt();
     }
 
 
