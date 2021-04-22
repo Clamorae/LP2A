@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Gui extends JFrame {
+public class Gui extends JFrame {//This class is creating a Jframe using swing and will print the whole game in the screen and allow players to interact with it
     private JLayeredPane masterPan;
     private JPanel bgPan;
     private JLayeredPane horsePan;
@@ -9,8 +9,8 @@ public class Gui extends JFrame {
     private JPanel dicePan;
 
 
-    public Gui(){
-        super("Lew Pewtit Cheweaux UwU");
+    public Gui(){//in the constructor we create different panel in superposition to print game board, horses, dice and terminal on the same picture
+        super("Ludo Game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600,600);
         setResizable(false);
@@ -49,16 +49,16 @@ public class Gui extends JFrame {
         setVisible(true);
     }
 
-    public void addHorse(Horse horse){
+    public void addHorse(Horse horse){//this function add an horse panel at the Jframe
         horsePan.add(horse.getPan());
     }
 
-    public void addDice(GameBoard gb){
+    public void addDice(GameBoard gb){// this function will add the dice panel to the Jframe
         dicePan.add(gb.getPan());
     }
 
 
-    public void log(String str){
+    public void log(String str){//this method take a string and print it in the textbox to give info at user
         this.nOfLines++;
         if (this.nOfLines >= 30){
             this.nOfLines = 1;

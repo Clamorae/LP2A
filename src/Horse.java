@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -48,6 +47,18 @@ public class Horse {
         this.horsePan.setOpaque(false);
         this.horsePan.setVisible(true);
         this.horsePan.add(horseLab, Integer.valueOf(1));
+    }
+
+    public boolean isWin() {
+        return this.isWin;
+    }
+
+    public boolean isPlayable() {
+        return playable;
+    }
+
+    public void setPlayable(boolean playable) {
+        this.playable = playable;
     }
 
     private boolean isCaseReal(Section section, int n){
@@ -151,7 +162,7 @@ public class Horse {
     }
 
     @Override
-    public String toString() {
+    public String toString() {//this methods override the toString method to create a method which will return a string with the case's information
         return "Horse{" + "\n" +
                 "   x=" + x + "\n" +
                 "   y=" + y + "\n" +
@@ -159,18 +170,6 @@ public class Horse {
                 "   currentSection=" + currentSection.getType() + currentSection.getColor().toString() + "\n" +
                 "   n=" + n + "\n" +
                 '}' + "\n";
-    }
-
-    public boolean isWin() {
-        return this.isWin;
-    }
-
-    public boolean isPlayable() {
-        return playable;
-    }
-
-    public void setPlayable(boolean playable) {
-        this.playable = playable;
     }
 
     public void play(int dice){
