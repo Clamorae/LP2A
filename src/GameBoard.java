@@ -43,7 +43,6 @@ public class GameBoard {
             @Override
             public void mouseClicked(MouseEvent e) {
                 RollDice();
-                System.out.println(intDice);
                 switch (intDice){
                     case 1:
                         diceLab.setIcon(new ImageIcon("images/1.png"));;
