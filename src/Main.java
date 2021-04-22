@@ -6,6 +6,11 @@ public class Main{
                 gb.gui.addHorse(h);
             }
         }
+        gb.gui.addDice(gb);
+        gb.gui.log("Hello World !");
+        gb.gui.log("Au tour de bleu");
+
+
     }
 
 }
