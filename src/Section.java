@@ -85,7 +85,8 @@ public class Section{//this class is where all the cases are set together and al
     void setNext(Section section){
         this.next = section;
     }
-    Case[] getCases(){return this.cases;}
+
+    public Case[] getCases(){return this.cases;}
 
     public Color getColor() {
         return color;

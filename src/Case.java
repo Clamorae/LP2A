@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
-public class Case {//this class is used for each case in the game board, it contain it's position, the number of horses on it and it's type
-    private String type;
+public class Case {
+    private Object type;//this class is used for each case in the game board, it contain it's position, the number of horses on it and it's type
     private Horse[] horses;
     private int X;
     private int Y;
@@ -13,11 +13,11 @@ public class Case {//this class is used for each case in the game board, it cont
         this.horses = new Horse[2];
     }
 
-    public String getType() {//All the methods (except the last one) in this class are classical getter and setter
+    public Object getType() {//All the methods (except the last one) in this class are classical getter and setter
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(type type) {
         this.type = type;
     }
 

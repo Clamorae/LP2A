@@ -25,6 +25,10 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             secArray[2] = new Section("Ladder", temp, null,null);
             secArray[1] = new Section("Normal", temp, null, secArray[2]);
             secArray[0] = new Section("Home", temp, secArray[1],null);
+            /*secArray[1].getCases()[2].setType(type.SAFE);
+            for(int j=0;j<6;j++){
+                secArray[2].getCases()[j].setType(type.SAFE);
+            }*/
             sections.put(temp, secArray);
             players[i]=new Player(temp,sections);
             i++;

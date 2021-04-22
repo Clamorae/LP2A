@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
 
 public class Horse {
     private boolean playable;
@@ -98,6 +97,7 @@ public class Horse {
         if(isCaseReal(this.currentSection,this.n+1)){
             newSection = currentSection;
             newN = this.n+1;
+            System.out.println(newSection.getCases()[newN].getType());
         }else{
             newSection = getNextSection(this.currentSection, this.color);
             newN = 0;
@@ -108,8 +108,16 @@ public class Horse {
 
         }
         if(isCaseAvailable(newSection.getCases()[newN])){
+            if (!(newSection.getCases()[newN].getHorses()[0] == null)) {
+                if (!newSection.getCases()[newN].getHorses()[0].color.equals(this.color)) {
+                    if (!newSection.getCases()[newN].getType().equals(type.SAFE)){
+                        backHome(newSection.getCases()[newN].getHorses()[0]);
+                    }
+                }
+            }
             setTo(newSection,newN);
             return true;
+
         }else{
             System.out.println("erreur");
             return false;
@@ -128,11 +136,11 @@ public class Horse {
         }
     }
 
-    private void backHome(HashMap< Color,Section[]>section){
-        this.currentSection=section.get(this.color)[0];
-        this.x=0;
-        this.y=0;
-        moveSprite();
+    private void backHome(Horse horse/*HashMap< Color,Section[]>section*/){
+        //this.currentSection=section.get(this.color)[0];
+        horse.x=0;
+        horse.y=0;
+        horse.moveSprite();
     }
 
     public void moveSprite(){
