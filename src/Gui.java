@@ -1,9 +1,12 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Gui extends JFrame {
-    JLayeredPane masterPan;
-    JPanel bgPan;
-    JPanel horsePan;
+    private JLayeredPane masterPan;
+    private JPanel bgPan;
+    private JPanel horsePan;
+    private JTextArea console;
+    private JLabel dice;
 
     public Gui(){
         super("Lew Pewtit Cheweaux UwU");
@@ -27,12 +30,28 @@ public class Gui extends JFrame {
         horsePan.setLayout(null);
         this.horsePan.setBounds(0,0,450,460);
         this.masterPan.add(this.horsePan, Integer.valueOf(2));
+
+        this.console = new JTextArea("       [BIENVENUE]");
+        console.setEditable(false);
+        console.setBounds(455,4,140,450);
+        this.masterPan.add(this.console, Integer.valueOf(3));
+
+        ImageIcon dicePic = new ImageIcon("RedHorse.png");
+        this.dice = new JLabel(dicePic);
+        this.dice.setBounds(0,0,50,50);
+        this.dice.setVisible(true);
+        this.masterPan.add(this.dice, Integer.valueOf(3));
+
         this.add(masterPan);
         setVisible(true);
     }
 
     public void addHorse(Horse horse){
         horsePan.add(horse.getPan());
+    }
+
+    public void log(String str){
+        console.setText(console.getText()+"\n>"+str);
     }
 
 }

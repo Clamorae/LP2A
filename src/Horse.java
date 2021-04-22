@@ -116,7 +116,23 @@ public class Horse {
         this.currentSection=section.get(this.color)[0];
         this.x=0;
         this.y=0;
-        horsePan.setBounds(this.x,this.y,49,49);
+        moveSprite(0,0);
+    }
+
+    public void moveSprite(int x, int y){
+        int oldX = this.x;
+        int newX = x;
+        int oldY = this.y;
+        int newY = y;
+        float sectionX = ((float)newX - (float)oldX)/100;
+        float sectionY = ((float)newY - (float)oldY)/100;
+        for(int i=1;i<100;i++){
+            horsePan.setLocation(oldX+(int)sectionX*i+1,oldY+(int)sectionY*i);
+        }
+        this.x = newX;
+        this.y = newY;
+        horsePan.setLocation(this.x,this.y);
+
     }
 
     public boolean setTo(Section section, int n){

@@ -7,6 +7,8 @@ public class Main{
                 gui.addHorse(h);
             }
         }
+        gui.log("Hello World !");
+        gui.log("Au tour de bleu");
 
 
     }
