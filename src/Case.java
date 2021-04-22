@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Case {//
+public class Case {//this class is used for each case in the game board, it contain it's position, the number of horses on it and it's type
     private String type;
     private Horse[] horses;
     private int X;
@@ -13,7 +13,7 @@ public class Case {//
         this.horses = new Horse[2];
     }
 
-    public String getType() {
+    public String getType() {//All the methods (except the last one) in this class are classical getter and setter
         return type;
     }
 
@@ -46,7 +46,7 @@ public class Case {//
     }
 
     @Override
-    public String toString() {
+    public String toString() {//this methods override the toString method to create a method which will return a string with the case's information
         return "Case{" + "\n" +
                 "   type='" + type + '\'' + "\n" +
                 "   horses=" + Arrays.toString(horses) + "\n" +

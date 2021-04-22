@@ -2,12 +2,12 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Player {
+public class Player {//the player class contain his horses, color and score, when is score reach four he wins the game
     private Color color;
     private int score;
     private Horse[] horse;
 
-    public Player(Color color, HashMap<Color,Section[]> section){
+    public Player(Color color, HashMap<Color,Section[]> section){//in the constructor we create four horses int the home section for the player and initialize his score and his color
         this.horse = new Horse[4];
         this.score=0;
         this.color=color;
@@ -23,7 +23,7 @@ public class Player {
     }
 
     @Override
-    public String toString() {
+    public String toString() {//this methods override the toString method to create a method which will return a string with the case's information
         return "Player{" + "\n" +
                 "   color=" + color + "\n" +
                 "   score=" + score + "\n" +

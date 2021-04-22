@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class GameBoard {
+public class GameBoard {//this class contain the GUI, the dice, the players and an hasmap of sections
     public Gui gui;
     private final Random dice = new Random();
     private static int intDice;
@@ -15,7 +15,7 @@ public class GameBoard {
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
 
-    public GameBoard() {
+    public GameBoard() {//this constructor construct the fourth player, call the GUI constructor, create sections,and the dice panel
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
         this.sections = new HashMap<>();
         this.players = new Player[4];
@@ -41,10 +41,10 @@ public class GameBoard {
 
         ImageIcon dicePic = new ImageIcon("Images/1.png");
         JLabel diceLab = new JLabel(dicePic);
-        diceLab.addMouseListener(new MouseAdapter() {
+        diceLab.addMouseListener(new MouseAdapter() {//when someone click on the dice label it will trigger the following method
             @Override
-            public void mouseClicked(MouseEvent e) {
-                RollDice();
+            public void mouseClicked(MouseEvent e) {//the panel Icon will change depending on the dice roll
+                rollDice();
                 System.out.println(intDice);
                 switch (intDice){
                     case 1:
@@ -82,20 +82,16 @@ public class GameBoard {
          return sections;
     }
 
-    public static void rollDice() {
-        //return this.dice.nextInt(6)+1;
-    }
-
-    public void RollDice() {
-        intDice = (this.dice.nextInt(6))+1;
-    }
-
     public JPanel getPan(){
         return dicePan;
     }
 
+    public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
+        intDice = (this.dice.nextInt(6))+1;
+    }
+
     @Override
-    public String toString() {
+    public String toString() {//this methods override the toString method to create a method which will return a string with the case's information
         return "GameBoard{" + "\n" +
                 "   dice=" + dice + "\n" +
                 "   players=" + Arrays.toString(players) + "\n" +

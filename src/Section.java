@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Arrays;
 
-public class Section{
+public class Section{//this class is where all the cases are set together and allow horses to travel around the whole game board
     private String type;
     private Color color;
     public Section next;
@@ -11,13 +11,9 @@ public class Section{
     private Vect x;
     private Vect y;
 
-    private Vect getPosition(Vect origin, Vect xVec, Vect yVec, int x, int y){
-        Vect xToAdd = xVec.times(x);
-        Vect yToAdd = yVec.times(y);
-        return origin.add(xToAdd.add(yToAdd));
-    }
-
     public Section(String type, Color color, Section next, Section nextLadder){
+        // for each Color the constructor will create three sections : the ladder, the home, nad the normal by adding cases at the right position on the game board and by adding them into array
+        //our Game board is a Linked list with no end : the end is the start so with that we have the same game board for all the players
         this.next = next;
         this.nextLadder = nextLadder;
         this.type = type;
@@ -77,6 +73,12 @@ public class Section{
         }
     }
 
+    private Vect getPosition(Vect origin, Vect xVec, Vect yVec, int x, int y){
+        Vect xToAdd = xVec.times(x);
+        Vect yToAdd = yVec.times(y);
+        return origin.add(xToAdd.add(yToAdd));
+    }
+
     void setNext(Section section){
         this.next = section;
     }
@@ -99,7 +101,7 @@ public class Section{
     }
 
     @Override
-    public String toString() {
+    public String toString() {//this methods override the toString method to create a method which will return a string with the case's information
         return "Section{" +
                 "   type='" + type + '\'' + "\n" +
                 "   color=" + color + "\n" +
