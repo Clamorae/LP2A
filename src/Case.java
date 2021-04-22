@@ -1,7 +1,6 @@
-import java.awt.*;
 import java.util.Arrays;
 
-public class Case {
+public class Case {//
     private String type;
     private Horse[] horses;
     private int X;

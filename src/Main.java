@@ -1,4 +1,4 @@
-public class Main{
+public class Main{//this class contain the main method which will call all the initializer : create the Game board, the GUI and the Players
     public static void main(String[]args){
         GameBoard gb = new GameBoard();
         for(Player p :gb.getPlayers()){
