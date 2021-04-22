@@ -23,13 +23,13 @@ public class Horse {
         this.isWin = false;
         ImageIcon horsePic;
         if (Color.BLUE.equals(color)){
-            horsePic = new ImageIcon("BlueHorse.png");
+            horsePic = new ImageIcon("Images/BlueHorse.png");
         }else if (Color.RED.equals(color)){
-            horsePic = new ImageIcon("RedHorse.png");
+            horsePic = new ImageIcon("Images/RedHorse.png");
         }else if (Color.GREEN.equals(color)){
-            horsePic = new ImageIcon("GreenHorse.png");
+            horsePic = new ImageIcon("Images/GreenHorse.png");
         }else{
-            horsePic = new ImageIcon("YellowHorse.png");
+            horsePic = new ImageIcon("Images/YellowHorse.png");
         }
         JLabel horseLab = new JLabel(horsePic);
         horseLab.addMouseListener(new MouseAdapter() {

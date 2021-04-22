@@ -17,7 +17,7 @@ public class Gui extends JFrame {
 
         this.bgPan = new JPanel();
         this.bgPan.setBounds(0,0,450,460);
-        ImageIcon bgPic = new ImageIcon("BG.png");
+        ImageIcon bgPic = new ImageIcon("Images/BG.png");
         JLabel bgLab = new JLabel(bgPic);
         this.bgPan.add(bgLab);
         this.masterPan.add(bgPan, Integer.valueOf(1));
