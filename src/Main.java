@@ -7,6 +7,7 @@ public class Main{
                 gui.addHorse(h);
             }
         }
+        gui.addDice(gb);
         gui.log("Hello World !");
         gui.log("Au tour de bleu");
 

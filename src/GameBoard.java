@@ -1,13 +1,18 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+
 
 public class GameBoard {
     private final Random dice = new Random();
     private static int intDice;
     private Player[] players;
     public static HashMap<Color, Section[]> sections;
+    JPanel dicePan;
 
     public GameBoard() {
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
@@ -32,7 +37,39 @@ public class GameBoard {
         green.next = yellow;
         yellow.next = blue;
 
-
+        ImageIcon dicePic = new ImageIcon("Images/1.png");
+        JLabel diceLab = new JLabel(dicePic);
+        diceLab.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RollDice();
+                System.out.println(intDice);
+                switch (intDice){
+                    case 1:
+                        diceLab.setIcon(new ImageIcon("images/1.png"));;
+                        break;
+                    case 2:
+                        diceLab.setIcon(new ImageIcon("images/2.png"));
+                        break;
+                    case 3:
+                        diceLab.setIcon(new ImageIcon("images/3.png"));
+                        break;
+                    case 4:
+                        diceLab.setIcon(new ImageIcon("images/4.png"));
+                        break;
+                    case 5:
+                        diceLab.setIcon(new ImageIcon("images/5.png"));;
+                        break;
+                    default:
+                        diceLab.setIcon(new ImageIcon("images/6.png"));
+                }
+            }
+        });
+        this.dicePan = new JPanel();
+        this.dicePan.setBounds(0,0,70,70);
+        this.dicePan.setOpaque(false);
+        this.dicePan.setVisible(true);
+        this.dicePan.add(diceLab);
     }
 
     public Player[] getPlayers() {
@@ -48,10 +85,12 @@ public class GameBoard {
     }
 
     public void RollDice() {
-        intDice = this.dice.nextInt();
+        intDice = (this.dice.nextInt(6))+1;
     }
 
-
+    public JPanel getPan(){
+        return dicePan;
+    }
 
     @Override
     public String toString() {

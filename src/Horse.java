@@ -32,6 +32,7 @@ public class Horse {
             horsePic = new ImageIcon("Images/YellowHorse.png");
         }
         JLabel horseLab = new JLabel(horsePic);
+
         horseLab.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
