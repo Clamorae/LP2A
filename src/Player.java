@@ -12,8 +12,9 @@ public class Player {
         this.score=0;
         this.color=color;
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
+        Section home = section.get(color)[0];
         for (int i = 0; i<4; i++){
-            horse[i]=new Horse(0,0, section.get(color)[0] ,i,this.color);
+            horse[i]=new Horse(home.getCases()[i].getX(),home.getCases()[i].getY(),home,i,this.color);
         }
     }
 

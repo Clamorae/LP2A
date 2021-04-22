@@ -1,4 +1,5 @@
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -9,6 +10,7 @@ public class Horse {
     private Section currentSection;
     private int n;
     private boolean isWin;
+    JPanel horsePan;
 
     public Horse(int x, int y, Section startSec, int n, Color color){
         this.x = x;
@@ -17,10 +19,30 @@ public class Horse {
         this.currentSection = startSec;
         this.n = n;
         this.isWin = false;
+        ImageIcon horsePic;
+        if (Color.BLUE.equals(color)){
+            horsePic = new ImageIcon("BlueHorse.png");
+        }else if (Color.RED.equals(color)){
+            horsePic = new ImageIcon("RedHorse.png");
+        }else if (Color.GREEN.equals(color)){
+            horsePic = new ImageIcon("GreenHorse.png");
+        }else{
+            horsePic = new ImageIcon("YellowHorse.png");
+        }
+        JLabel horseLab = new JLabel(horsePic);
+        this.horsePan = new JPanel();
+        this.horsePan.setBounds(this.x,this.y,49,49);
+        this.horsePan.setOpaque(false);
+        this.horsePan.setVisible(true);
+        this.horsePan.add(horseLab);
     }
 
     private boolean isCaseReal(Section section, int n){
         return section.getCases().length > n;
+    }
+
+    public JPanel getPan(){
+        return horsePan;
     }
 
     private Section getNextSection(Section current, Color color){
@@ -99,7 +121,6 @@ public class Horse {
         array = this.currentSection.getCases()[this.n].getHorses();
         for(int i=0;i<2;i++){
             if (array[i] == null){
-                System.out.print("Cheval Posé");
                 array[i] = this;
                 return true;
             }
