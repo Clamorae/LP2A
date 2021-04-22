@@ -24,15 +24,15 @@ public class Section{
         this.color = color;
 
         if (Color.GREEN.equals(color)) {
-            this.origin = new Vect(238, 0);
+            this.origin = new Vect(198, 9);
             this.x = new Vect(0, 1);
             this.y = new Vect(-1, 0);
         } else if (Color.YELLOW.equals(color)) {
-            this.origin = new Vect(448, 239);
+            this.origin = new Vect(402, 210);
             this.x = new Vect(-1, 0);
-            this.y = new Vect(-1, 0);
+            this.y = new Vect(0, -1);
         } else if (Color.BLUE.equals(color)) {
-            this.origin = new Vect(211, 450);
+            this.origin = new Vect(205, 410);
             this.x = new Vect(0, -1);
             this.y = new Vect(1, 0);
         } else {
@@ -45,8 +45,8 @@ public class Section{
             case "Home" -> {
                 this.cases = new Case[4];
                 for(int i = 0; i<4;i++){
-                    int[] xPos = {35,122,35,122};
-                    int[] yPos = {85,85,175,175};
+                    int[] xPos = {25,112,25,112};
+                    int[] yPos = {86,86,174,174};
                     Vect finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
                     this.cases[i] = new Case("Home", finalPos.x, finalPos.y);
                 }

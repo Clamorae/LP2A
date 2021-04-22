@@ -6,7 +6,7 @@ public class Gui extends JFrame {
     JPanel horsePan;
 
     public Gui(){
-        super("Very Insidious Horses");
+        super("Lew Pewtit Cheweaux UwU");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600,600);
         setResizable(false);
