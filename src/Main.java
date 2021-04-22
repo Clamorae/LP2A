@@ -8,6 +8,7 @@ public class Main{
         while(!horse.isWin()){
             horse.moveForward(6);
         }
+        Gui gui = new Gui();
 
     }
 
