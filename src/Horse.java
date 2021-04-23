@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 
 public class Horse {
     private boolean playable;
-    private int dice;
     private int x;
     private int y;
     private Color color;
@@ -18,7 +17,6 @@ public class Horse {
     public Horse(int x, int y, Section startSec, int n, Color color){
         this.x = x;
         this.playable = true;
-        this.dice = 6;
         this.y = y;
         this.color = color;
         this.currentSection = startSec;
@@ -40,7 +38,7 @@ public class Horse {
         horseLab.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                play(dice);
+                play();
             }
         });
         this.horsePan = new JPanel();
@@ -121,7 +119,7 @@ public class Horse {
 
     public void moveForward(int dr){
         if(this.currentSection.getType().equals("Home")){
-            if(dr == 1){
+            if(dr == 6){
                 setTo(this.currentSection.next, 1);
             }
         }else{
@@ -192,11 +190,10 @@ public class Horse {
                 '}' + "\n";
     }
 
-    public void play(int dice){
-        if (this.playable){
-            dice=GameBoard.getDice();
-            moveForward(1);
-            //this.playable = false;
+    public void play(){
+        if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
+            moveForward(GameManager.getDice());
+            GameManager.nextTurn();
         }
     }
 }

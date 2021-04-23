@@ -10,7 +10,6 @@ import java.util.Random;
 public class GameBoard {//this class contain the GUI, the dice, the players and an hashmap of sections
     public Gui gui;
     private final Random dice = new Random();
-    private static int intDice;
     private Player[] players;
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
@@ -47,8 +46,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             @Override
             public void mouseClicked(MouseEvent e) {//the panel Icon will change depending on the dice roll
                 rollDice();
-                System.out.println(intDice);
-                switch (intDice){
+                switch (GameManager.getDice()){
                     case 1:
                         diceLab.setIcon(new ImageIcon("Images/1.png"));;
                         break;
@@ -89,13 +87,13 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     }
 
     public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
-        intDice = (this.dice.nextInt(6))+1;
-        gui.log("You roll a "+intDice);
-        this.waitForDice=false;
-    }
-
-    public static int getDice(){
-        return intDice;
+        if (GameManager.isThrewDice()==false){
+            GameManager.setDice((this.dice.nextInt(6))+1);
+            gui.log("You roll a "+GameManager.getDice());
+            GameManager.setThrewDice(true);
+        }else{
+            gui.log("nop");
+        }
     }
 
     @Override
@@ -118,17 +116,9 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     }
 
 
-    public Player game(){
+    public void game(){
         gui.log("Open the game!");
         int maxscore = 0;
-        while(true){
-            for(Player p: this.players){
-                gui.log("Au tour de "+p.getStrColor());
-                this.waitForDice = true;
-                while(this.waitForDice){}
-            }
-        }
-
     }
 
 

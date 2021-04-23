@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Main{//this class contain the main method which will call create the Game board and use it to initialize everything else
     public static void main(String[]args){
         GameBoard gb = new GameBoard();
@@ -7,6 +9,8 @@ public class Main{//this class contain the main method which will call create th
             }
         }
         gb.gui.addDice(gb);
+        GameManager.setTurn(Color.BLUE);
+        GameManager.nextTurn();
         gb.game();
 
 
