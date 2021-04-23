@@ -12,24 +12,27 @@ public class GameManager {
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
             if (isCpu()){
+                GameBoard.gui.log("red->green");
                 cpuPlay(GameBoard.getPlayers()[2]);
+
             }
         }else if(GameManager.turn.equals(Color.GREEN)){
             GameManager.turn=Color.YELLOW;
             if (isCpu()){
+                GameBoard.gui.log("green->y");
                 cpuPlay(GameBoard.getPlayers()[3]);
+
             }
         }else if(GameManager.turn.equals(Color.YELLOW)){
             GameManager.turn=Color.BLUE;
             if (isCpu()){
+                GameBoard.gui.log("y->blue");
                 cpuPlay(GameBoard.getPlayers()[0]);
             }
         }else{
             GameManager.turn=Color.RED;
-            if (isCpu()){
-                cpuPlay(GameBoard.getPlayers()[1]);
-            }
         }
+        Horse.setSkip(0);
         gui.log("It's " + GameManager.getStrColor() + "'s turn");
         gui.log("Please roll the dice");
 

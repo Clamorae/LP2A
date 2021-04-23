@@ -124,7 +124,7 @@ public class Horse {
             return true;
 
         }else{
-            System.out.println("erreur");
+            System.out.println("error");
             return false;
         }
     }
@@ -221,12 +221,12 @@ public class Horse {
 
     public void play(){
         if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
-            if (moveForward(GameManager.getDice())==false){
+            if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
                 gui.log("Nope.");
-                if (getSkip()==4){
+                System.out.println(getSkip());
+                if (getSkip()<=4){
                     GameManager.nextTurn();
-                    setSkip(0);
                 }
             }else{
                 gui.log("You played");
@@ -234,13 +234,17 @@ public class Horse {
                     gui.log("Play again !");
                     gui.log("Please re-roll");
                     GameManager.setThrewDice(false);
+                    if (GameManager.isCpu()&&(!this.color.equals(Color.RED))){
+                        GameBoard.rollDice();
+                        this.play();
+                    }
                 }else {
                     GameManager.nextTurn();
                 }
 
             }
         }else{
-            gui.log("Nope.");
+            gui.log("Not playable.");
         }
 
     }
