@@ -100,6 +100,7 @@ public class Horse {
             }
         }
         this.isWin = true;
+        this.setPlayable(false);
         this.horsePan.setVisible(false);
         gui.log("Horse won !");
     }
