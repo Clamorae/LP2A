@@ -1,16 +1,12 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Gui extends JFrame {//This class is creating a Jframe using swing and will print the whole game in the screen and allow players to interact with it
-    private JLayeredPane masterPan;
-    private JPanel bgPan;
-    private JLayeredPane horsePan;
-    private JTextArea console;
+    private final JLayeredPane horsePan;
+    private final JTextArea console;
     private int nOfLines;
-    private JPanel dicePan;
-    private JPanel pass;
+    private final JPanel dicePan;
 
 
     public Gui(){//in the constructor we create different panel in superposition to print game board, horses, dice and terminal on the same picture
@@ -19,39 +15,39 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
         setSize(600,500);
         setResizable(false);
 
-        this.masterPan = new JLayeredPane();
-        this.masterPan.setLayout(null);
-        this.masterPan.setOpaque(true);
+        JLayeredPane masterPan = new JLayeredPane();
+        masterPan.setLayout(null);
+        masterPan.setOpaque(true);
 
-        this.bgPan = new JPanel();
-        this.bgPan.setBounds(0,0,450,460);
+        JPanel bgPan = new JPanel();
+        bgPan.setBounds(0,0,450,460);
         ImageIcon bgPic = new ImageIcon("Images/BG.png");
         JLabel bgLab = new JLabel(bgPic);
-        this.bgPan.add(bgLab);
-        this.masterPan.add(bgPan, Integer.valueOf(1));
+        bgPan.add(bgLab);
+        masterPan.add(bgPan, Integer.valueOf(1));
 
         this.horsePan = new JLayeredPane();
         horsePan.setOpaque(false);
         horsePan.setLayout(null);
         this.horsePan.setBounds(0,0,450,460);
-        this.masterPan.add(this.horsePan, Integer.valueOf(2));
+        masterPan.add(this.horsePan, Integer.valueOf(2));
 
-        this.console = new JTextArea("       [BIENVENUE]");
+        this.console = new JTextArea("       [Welcome]");
         this.nOfLines = 1;
         console.setEditable(false);
         console.setBounds(455,4,140,400);
-        this.masterPan.add(this.console, Integer.valueOf(3));
+        masterPan.add(this.console, Integer.valueOf(3));
 
 
         this.dicePan = new JPanel();
         dicePan.setOpaque(false);
         dicePan.setLayout(null);
         this.dicePan.setBounds(190,200,450,460);
-        this.masterPan.add(this.dicePan, Integer.valueOf(4));
+        masterPan.add(this.dicePan, Integer.valueOf(4));
 
-        this.pass = new JPanel();
+        JPanel pass = new JPanel();
         pass.setOpaque(false);
-        this.pass.setBounds(455,405,50,50);
+        pass.setBounds(455,405,50,50);
         ImageIcon passPic = new ImageIcon("Images/next.png");
         JLabel passLab = new JLabel(passPic);
         passLab.addMouseListener(new MouseAdapter() {
@@ -60,8 +56,8 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
                 GameManager.nextTurn();
             }
         });
-        this.pass.add(passLab);
-        this.masterPan.add(pass, Integer.valueOf(5));
+        pass.add(passLab);
+        masterPan.add(pass, Integer.valueOf(5));
 
 
 

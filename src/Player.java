@@ -3,9 +3,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Player {//the player class contain his horses, color and score, when is score reach four he wins the game
-    private Color color;
-    private Horse[] horse;
-    private Gui gui;
+    private final Color color;
+    private final Horse[] horse;
 
     public Player(Color color, HashMap<Color,Section[]> section){//in the constructor we create four horses int the home section for the player and initialize his score and his color
         this.horse = new Horse[4];

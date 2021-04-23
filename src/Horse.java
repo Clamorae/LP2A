@@ -7,9 +7,9 @@ public class Horse {
     private boolean playable;
     private int x;
     private int y;
-    private Color color;
+    private final Color color;
     private Section currentSection;
-    private Section homeSection;
+    private final Section homeSection;
     private int n;
     private boolean isWin;
     private Gui gui;
@@ -24,7 +24,7 @@ public class Horse {
         this.currentSection = startSec;
         this.homeSection = startSec;
         this.n = n;
-        this.isWin = false;
+        this.setWin(false);
         ImageIcon horsePic;
         if (Color.BLUE.equals(color)){
             horsePic = new ImageIcon("Images/BlueHorse.png");
@@ -58,8 +58,8 @@ public class Horse {
         Horse.skip = skip;
     }
 
-    public boolean isWin() {
-        return this.isWin;
+    public void setWin(boolean win) {
+        this.isWin = win;
     }
 
     public boolean isPlayable() {
@@ -78,57 +78,42 @@ public class Horse {
         return horsePan;
     }
 
-    private Section getNextSection(Section current, Color color){
-        if(current.next == null){
-            return null;
-        }else if (current.next.getColor().equals(color)){
-            return current.next.nextLadder;
+    public void setGui(Gui gui) {
+        this.gui = gui;
+    }
+
+    public void play(){
+        if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
+            if (!moveForward(GameManager.getDice())){
+                setSkip(getSkip()+1);
+                gui.log("Not playable.");
+                System.out.println(getSkip());
+                if (getSkip()<=4){
+                    GameManager.nextTurn();
+                }
+            }else{
+                gui.log("You played");
+                if(GameManager.getDice() == 6){
+                    gui.log("Play again !");
+                    gui.log("Please re-roll");
+                    GameManager.setThrewDice(false);
+                    if (GameManager.isCpu()&&(!this.color.equals(Color.RED))){
+                        GameBoard.rollDice();
+                        this.play();
+                    }
+                }else {
+                    GameManager.nextTurn();
+                }
+
+            }
         }else{
-            return current.next;
-        }
-    }
-
-    private  boolean isCaseAvailable(Case _case){
-        return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
-    }
-
-    public void win(){
-        Horse[] horses = this.currentSection.getCases()[n].getHorses();
-        for(int i = 0; i<2; i++){
-            if(horses[i] == this){
-                horses[i] = null;
+            if (!GameManager.isCpu()){
+                gui.log("Not playable.");
+            }else if (this.color.equals(Color.RED)){
+                gui.log("Not playable.");
             }
         }
-        this.isWin = true;
-        this.setPlayable(false);
-        this.horsePan.setVisible(false);
-        gui.log("Horse in!");
-        GameManager.addScore(this.color);
-        GameManager.checkForWin();
-    }
 
-    public boolean moveOne(){
-        Section newSection;
-        int newN;
-        if(isCaseReal(this.currentSection,this.n+1)){
-            newSection = currentSection;
-            newN = this.n+1;
-        }else{
-            newSection = getNextSection(this.currentSection, this.color);
-            newN = 0;
-            if(newSection == null){
-                win();
-                return false;
-            }
-
-        }
-        if(isCaseAvailable(newSection.getCases()[newN])){
-            setTo(newSection,newN);
-            return true;
-
-        }else{
-            return false;
-        }
     }
 
     public boolean moveForward(int dr){
@@ -173,6 +158,59 @@ public class Horse {
 
     }
 
+    public boolean moveOne(){
+        Section newSection;
+        int newN;
+        if(isCaseReal(this.currentSection,this.n+1)){
+            newSection = currentSection;
+            newN = this.n+1;
+        }else{
+            newSection = getNextSection(this.currentSection, this.color);
+            newN = 0;
+            if(newSection == null){
+                win();
+                return false;
+            }
+
+        }
+        if(isCaseAvailable(newSection.getCases()[newN])){
+            setTo(newSection,newN);
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+
+    private Section getNextSection(Section current, Color color){
+        if(current.next == null){
+            return null;
+        }else if (current.next.getColor().equals(color)){
+            return current.next.nextLadder;
+        }else{
+            return current.next;
+        }
+    }
+
+    public void win(){
+        Horse[] horses = this.currentSection.getCases()[n].getHorses();
+        for(int i = 0; i<2; i++){
+            if(horses[i] == this){
+                horses[i] = null;
+            }
+        }
+        this.setWin(true);
+        this.setPlayable(false);
+        this.horsePan.setVisible(false);
+        gui.log("Horse in!");
+        GameManager.addScore(this.color);
+        GameManager.checkForWin();
+    }
+
+    private  boolean isCaseAvailable(Case _case){
+        return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
+    }
+
     private void backHome(Horse h){
         int n=0;
         for (Case c:h.homeSection.getCases()){
@@ -191,7 +229,7 @@ public class Horse {
         this.horsePan.setLocation(this.x,this.y);
     }
 
-    public boolean setTo(Section section, int n){
+    public void setTo(Section section, int n){
         Horse[] array = this.currentSection.getCases()[this.n].getHorses();
         for(int i=0;i<2;i++){
             if (array[i] == this){
@@ -207,10 +245,8 @@ public class Horse {
         for(int i=0;i<2;i++){
             if (array[i] == null){
                 array[i] = this;
-                return true;
             }
         }
-        return false;
     }
 
     @Override
@@ -222,43 +258,5 @@ public class Horse {
                 "   currentSection=" + currentSection.getType() + currentSection.getColor().toString() + "\n" +
                 "   n=" + n + "\n" +
                 '}' + "\n";
-    }
-
-    public void play(){
-        if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
-            if (!moveForward(GameManager.getDice())){
-                setSkip(getSkip()+1);
-                gui.log("Not playable.");
-                System.out.println(getSkip());
-                if (getSkip()<=4){
-                    GameManager.nextTurn();
-                }
-            }else{
-                gui.log("You played");
-                if(GameManager.getDice() == 6){
-                    gui.log("Play again !");
-                    gui.log("Please re-roll");
-                    GameManager.setThrewDice(false);
-                    if (GameManager.isCpu()&&(!this.color.equals(Color.RED))){
-                        GameBoard.rollDice();
-                        this.play();
-                    }
-                }else {
-                    GameManager.nextTurn();
-                }
-
-            }
-        }else{
-            if (!GameManager.isCpu()){
-                gui.log("Not playable.");
-            }else if (this.color.equals(Color.RED)){
-                gui.log("Not playable.");
-            }
-        }
-
-    }
-
-    public void setGui(Gui gui) {
-        this.gui = gui;
     }
 }

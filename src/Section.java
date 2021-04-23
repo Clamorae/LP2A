@@ -2,14 +2,11 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class Section{//this class is where all the cases are set together and allow horses to travel around the whole game board
-    private String type;
-    private Color color;
+    private final String type;
+    private final Color color;
     public Section next;
     public Section nextLadder;
     private Case[] cases;
-    private Vect origin;
-    private Vect x;
-    private Vect y;
 
     public Section(String type, Color color, Section next, Section nextLadder){
         // for each Color the constructor will create three sections : the ladder, the home, nad the normal by adding cases at the right position on the game board and by adding them into array
@@ -19,22 +16,25 @@ public class Section{//this class is where all the cases are set together and al
         this.type = type;
         this.color = color;
 
+        Vect origin;
+        Vect x;
+        Vect y;
         if (Color.GREEN.equals(color)) {
-            this.origin = new Vect(198, 9);
-            this.x = new Vect(0, 1);
-            this.y = new Vect(-1, 0);
+            origin = new Vect(198, 9);
+            x = new Vect(0, 1);
+            y = new Vect(-1, 0);
         } else if (Color.YELLOW.equals(color)) {
-            this.origin = new Vect(402, 210);
-            this.x = new Vect(-1, 0);
-            this.y = new Vect(0, -1);
+            origin = new Vect(402, 210);
+            x = new Vect(-1, 0);
+            y = new Vect(0, -1);
         } else if (Color.BLUE.equals(color)) {
-            this.origin = new Vect(205, 410);
-            this.x = new Vect(0, -1);
-            this.y = new Vect(1, 0);
+            origin = new Vect(205, 410);
+            x = new Vect(0, -1);
+            y = new Vect(1, 0);
         } else {
-            this.origin = new Vect(0, 212);
-            this.x = new Vect(1, 0);
-            this.y = new Vect(0, 1);
+            origin = new Vect(0, 212);
+            x = new Vect(1, 0);
+            y = new Vect(0, 1);
         }
 
         switch (type) {
@@ -44,7 +44,7 @@ public class Section{//this class is where all the cases are set together and al
                 int[] yPos = {86,86,174,174};
                 Vect finalPos;
                 for(int i = 0; i<4;i++){
-                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    finalPos = getPosition(origin, x, y,xPos[i], yPos[i]);
                     this.cases[i] = new Case(Ctype.HOME, finalPos.x, finalPos.y);
                 }
             }
@@ -53,24 +53,24 @@ public class Section{//this class is where all the cases are set together and al
                 int[] yPos = {173,145,118-3,89-3,63-3};
                 Vect finalPos;
                 for (int i = 0; i < 5; i++) {
-                    finalPos = getPosition(this.origin,this.x,this.y,200,yPos[i]);
+                    finalPos = getPosition(origin, x, y,200,yPos[i]);
                     this.cases[i] = new Case(Ctype.SAFE, finalPos.x, finalPos.y);
                 }
             }
             case "Normal" -> {
                 int[] xPos = {172,172,172,172,172,172,141,112,84,55,26,0,0};
-                int[] yPos = {200,173,145,118-3,89-3,63-3,29-3,29-3,29-3,29-3,29-3,29-3,1};
+                int[] yPos = {200,173,145,115,86,60,26,26,26,26,26,26,1};
                 this.cases = new Case[13];
                 Vect finalPos;
                 for (int i = 0; i < 9; i++) {
-                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    finalPos = getPosition(origin, x, y,xPos[i], yPos[i]);
                     this.cases[i] = new Case(Ctype.NORMAL, finalPos.x, finalPos.y);
                 }
                 this.cases[1].setType(Ctype.SAFE);
-                finalPos = getPosition(this.origin,this.x,this.y,xPos[9], yPos[9]);
+                finalPos = getPosition(origin, x, y,xPos[9], yPos[9]);
                 this.cases[9] = new Case(Ctype.SAFE, finalPos.x, finalPos.y);
                 for (int i = 10; i < 13; i++) {
-                    finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
+                    finalPos = getPosition(origin, x, y,xPos[i], yPos[i]);
                     this.cases[i] = new Case(Ctype.NORMAL, finalPos.x, finalPos.y);
                 }
             }
@@ -83,26 +83,14 @@ public class Section{//this class is where all the cases are set together and al
         return origin.add(xToAdd.add(yToAdd));
     }
 
-    void setNext(Section section){
-        this.next = section;
-    }
-
     public Case[] getCases(){return this.cases;}
 
     public Color getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override

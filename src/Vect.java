@@ -7,11 +7,6 @@ public class Vect {//this Class is use to create Vector, which is simple than us
         this.y = y;
     }
 
-    public Vect(){
-        this.x = 0;
-        this.y = 0;
-    }
-
     public Vect times(int n){// a function which take an integer and return the vector multiplied by this integer
         int x = this.x * n;
         int y = this.y * n;

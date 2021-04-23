@@ -13,7 +13,6 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     private static Player[] players;
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
-    private boolean waitForDice;
 
     public GameBoard() {//this constructor construct the fourth player, call the GUI constructor, create sections,and the dice panel
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
@@ -37,7 +36,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
         red.next = green;
         green.next = yellow;
         yellow.next = blue;
-        this.gui = new Gui();
+        gui = new Gui();
 
         ImageIcon dicePic = new ImageIcon("Images/1.png");
         JLabel diceLab = new JLabel(dicePic);
@@ -46,17 +45,11 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             public void mouseClicked(MouseEvent e) {//the panel Icon will change depending on the dice roll
                 rollDice();
                 switch (GameManager.getDice()) {
-                    case 1 -> {
-                        diceLab.setIcon(new ImageIcon("Images/1.png"));
-                        ;
-                    }
+                    case 1 -> diceLab.setIcon(new ImageIcon("Images/1.png"));
                     case 2 -> diceLab.setIcon(new ImageIcon("Images/2.png"));
                     case 3 -> diceLab.setIcon(new ImageIcon("Images/3.png"));
                     case 4 -> diceLab.setIcon(new ImageIcon("Images/4.png"));
-                    case 5 -> {
-                        diceLab.setIcon(new ImageIcon("Images/5.png"));
-                        ;
-                    }
+                    case 5 -> diceLab.setIcon(new ImageIcon("Images/5.png"));
                     default -> diceLab.setIcon(new ImageIcon("Images/6.png"));
                 }
             }
@@ -72,10 +65,6 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
         return players;
     }
 
-    public HashMap<Color, Section[]> getSections() {
-         return sections;
-    }
-
     public JPanel getPan(){
         return dicePan;
     }
@@ -83,7 +72,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     public static void rollDice() {// this method will change of value of intDice for a value between 1 and 6
         if (!GameManager.isThrewDice()){
             GameManager.setDice((GameBoard.dice.nextInt(6))+1);
-            GameBoard.gui.log("You rolled a "+GameManager.getDice());
+            GameBoard.gui.log("It's a "+GameManager.getDice());
             GameManager.setThrewDice(true);
         }else{
             GameBoard.gui.log("Nope.");

@@ -15,27 +15,35 @@ public class GameManager {
         GameManager.threwDice = false;
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
+            gui.log("It's " + GameManager.getStrColor() + "'s turn");
             if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[2]);
-
+            }else{
+                gui.log("Please roll the dice");
             }
         }else if(GameManager.turn.equals(Color.GREEN)){
             GameManager.turn=Color.YELLOW;
+            gui.log("It's " + GameManager.getStrColor() + "'s turn");
             if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[3]);
-
+            }else{
+                gui.log("Please roll the dice");
             }
         }else if(GameManager.turn.equals(Color.YELLOW)){
             GameManager.turn=Color.BLUE;
+            gui.log("It's " + GameManager.getStrColor() + "'s turn");
             if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[0]);
+            }else{
+                gui.log("Please roll the dice");
             }
         }else{
             GameManager.turn=Color.RED;
+            gui.log("It's " + GameManager.getStrColor() + "'s turn");
+            gui.log("Please roll the dice");
         }
         Horse.setSkip(0);
-        gui.log("It's " + GameManager.getStrColor() + "'s turn");
-        gui.log("Please roll the dice");
+
 
     }
 
@@ -92,13 +100,6 @@ public class GameManager {
         }else{
             return "green";
         }
-    }
-
-    public static void initScore(){
-        GameManager.bScore = 0;
-        GameManager.rScore = 0;
-        GameManager.gScore = 0;
-        GameManager.yScore = 0;
     }
 
     public static void addScore(Color c){

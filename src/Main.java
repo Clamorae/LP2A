@@ -11,14 +11,14 @@ public class Main implements ActionListener {//this class contain the main metho
 
     public static void launchGame(){
         GameBoard gb = new GameBoard();
-        for(Player p :gb.getPlayers()){
+        for(Player p : GameBoard.getPlayers()){
             for(Horse h :p.getHorse()){
-                h.setGui(gb.gui);
-                gb.gui.addHorse(h);
+                h.setGui(GameBoard.gui);
+                GameBoard.gui.addHorse(h);
             }
         }
-        gb.gui.addDice(gb);
-        GameManager.setGui(gb.gui);
+        GameBoard.gui.addDice(gb);
+        GameManager.setGui(GameBoard.gui);
         GameManager.setTurn(Color.BLUE);
         GameManager.nextTurn();
     }
