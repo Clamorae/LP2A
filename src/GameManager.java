@@ -2,21 +2,44 @@ import java.awt.*;
 
 public class GameManager {
     private static Color turn;
+    private static boolean cpu;
     private static boolean threwDice;
     private static boolean played;
     private static int dice;
+
+    GameManager(boolean cpu){
+        this.cpu=cpu;
+    }
 
     public static void nextTurn(){
         GameManager.threwDice = false;
         GameManager.played = false;
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
+            if (GameManager.cpu){
+                cpuPlay(GameBoard.getPlayers()[2]);
+            }
         }else if(GameManager.turn.equals(Color.GREEN)){
             GameManager.turn=Color.YELLOW;
+            if (GameManager.cpu){
+                cpuPlay(GameBoard.getPlayers()[3]);
+            }
         }else if(GameManager.turn.equals(Color.YELLOW)){
             GameManager.turn=Color.BLUE;
+            if (GameManager.cpu){
+                cpuPlay(GameBoard.getPlayers()[0]);
+            }
         }else{
             GameManager.turn=Color.RED;
+            if (GameManager.cpu){
+                cpuPlay(GameBoard.getPlayers()[1]);
+            }
+        }
+    }
+
+    public static void cpuPlay(Player p){
+        for(int i=0;i<4;i++){
+            p.getHorse()[i].play();
         }
     }
 

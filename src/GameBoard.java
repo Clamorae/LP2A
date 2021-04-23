@@ -10,15 +10,15 @@ import java.util.Random;
 public class GameBoard {//this class contain the GUI, the dice, the players and an hashmap of sections
     public Gui gui;
     private final Random dice = new Random();
-    private Player[] players;
+    private static Player[] players;
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
     private boolean waitForDice;
 
     public GameBoard() {//this constructor construct the fourth player, call the GUI constructor, create sections,and the dice panel
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
-        this.sections = new HashMap<>();
-        this.players = new Player[4];
+        GameBoard.sections = new HashMap<>();
+        GameBoard.players = new Player[4];
         int i=0;
         for (Color temp : colorArray) {
             Section[] secArray = new Section[3];
@@ -30,10 +30,10 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
 
             i++;
         }
-        Section blue = this.sections.get(Color.BLUE)[1];
-        Section red = this.sections.get(Color.RED)[1];
-        Section green = this.sections.get(Color.GREEN)[1];
-        Section yellow = this.sections.get(Color.YELLOW)[1];
+        Section blue = GameBoard.sections.get(Color.BLUE)[1];
+        Section red = GameBoard.sections.get(Color.RED)[1];
+        Section green = GameBoard.sections.get(Color.GREEN)[1];
+        Section yellow = GameBoard.sections.get(Color.YELLOW)[1];
         blue.next = red;
         red.next = green;
         green.next = yellow;
@@ -46,24 +46,19 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             @Override
             public void mouseClicked(MouseEvent e) {//the panel Icon will change depending on the dice roll
                 rollDice();
-                switch (GameManager.getDice()){
-                    case 1:
-                        diceLab.setIcon(new ImageIcon("Images/1.png"));;
-                        break;
-                    case 2:
-                        diceLab.setIcon(new ImageIcon("Images/2.png"));
-                        break;
-                    case 3:
-                        diceLab.setIcon(new ImageIcon("Images/3.png"));
-                        break;
-                    case 4:
-                        diceLab.setIcon(new ImageIcon("Images/4.png"));
-                        break;
-                    case 5:
-                        diceLab.setIcon(new ImageIcon("Images/5.png"));;
-                        break;
-                    default:
-                        diceLab.setIcon(new ImageIcon("Images/6.png"));
+                switch (GameManager.getDice()) {
+                    case 1 -> {
+                        diceLab.setIcon(new ImageIcon("Images/1.png"));
+                        ;
+                    }
+                    case 2 -> diceLab.setIcon(new ImageIcon("Images/2.png"));
+                    case 3 -> diceLab.setIcon(new ImageIcon("Images/3.png"));
+                    case 4 -> diceLab.setIcon(new ImageIcon("Images/4.png"));
+                    case 5 -> {
+                        diceLab.setIcon(new ImageIcon("Images/5.png"));
+                        ;
+                    }
+                    default -> diceLab.setIcon(new ImageIcon("Images/6.png"));
                 }
             }
         });
@@ -74,7 +69,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
         this.dicePan.add(diceLab);
     }
 
-    public Player[] getPlayers() {
+    public static Player[] getPlayers() {
         return players;
     }
 
@@ -87,7 +82,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     }
 
     public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
-        if (GameManager.isThrewDice()==false){
+        if (!GameManager.isThrewDice()){
             GameManager.setDice((this.dice.nextInt(6))+1);
             gui.log("You roll a "+GameManager.getDice());
             GameManager.setThrewDice(true);
@@ -107,7 +102,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
 
     private int getMaxScore(){
         int out = 0;
-        for(Player p:this.players){
+        for(Player p:GameBoard.players){
             if(p.getScore()>out){
                 out = p.getScore();
             }
