@@ -13,6 +13,7 @@ public class Horse {
     private int n;
     private boolean isWin;
     private Gui gui;
+    private static int skip;
     JPanel horsePan;
 
     public Horse(int x, int y, Section startSec, int n, Color color){
@@ -47,6 +48,14 @@ public class Horse {
         this.horsePan.setOpaque(false);
         this.horsePan.setVisible(true);
         this.horsePan.add(horseLab, Integer.valueOf(1));
+    }
+
+    public static int getSkip() {
+        return skip;
+    }
+
+    public static void setSkip(int skip) {
+        Horse.skip = skip;
     }
 
     public boolean isWin() {
@@ -89,7 +98,10 @@ public class Horse {
             if(horses[i] == this){
                 horses[i] = null;
             }
-        }this.isWin = true;
+        }
+        this.isWin = true;
+        this.horsePan.setVisible(false);
+        gui.log("Horse won !");
     }
 
     public boolean moveOne(){
@@ -98,7 +110,6 @@ public class Horse {
         if(isCaseReal(this.currentSection,this.n+1)){
             newSection = currentSection;
             newN = this.n+1;
-            System.out.println(newSection.getCases()[newN].getType());
         }else{
             newSection = getNextSection(this.currentSection, this.color);
             newN = 0;
@@ -118,10 +129,13 @@ public class Horse {
         }
     }
 
-    public void moveForward(int dr){
+    public boolean moveForward(int dr){
         if(this.currentSection.getType().equals("Home")){
             if(dr == 6){
                 setTo(this.currentSection.next, 1);
+                return true;
+            }else{
+                return false;
             }
         }else{
             while(dr != 0 && this.moveOne()){
@@ -150,6 +164,7 @@ public class Horse {
                 gui.bottom(h);
             }
         }
+        return true;
 
     }
 
@@ -206,17 +221,28 @@ public class Horse {
 
     public void play(){
         if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
-            moveForward(GameManager.getDice());
-            gui.log("You played");
-            if(GameManager.getDice() == 6){
-                gui.log("Play again !");
-                GameManager.setThrewDice(false);
-            }else {
-                GameManager.nextTurn();
+            if (moveForward(GameManager.getDice())==false){
+                setSkip(getSkip()+1);
+                gui.log("Nope.");
+                if (getSkip()==4){
+                    GameManager.nextTurn();
+                    setSkip(0);
+                }
+            }else{
+                gui.log("You played");
+                if(GameManager.getDice() == 6){
+                    gui.log("Play again !");
+                    gui.log("Please re-roll");
+                    GameManager.setThrewDice(false);
+                }else {
+                    GameManager.nextTurn();
+                }
+
             }
         }else{
             gui.log("Nope.");
         }
+
     }
 
     public void setGui(Gui gui) {
