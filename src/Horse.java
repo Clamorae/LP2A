@@ -140,15 +140,10 @@ public class Horse {
     }
 
     private void backHome(Horse h){
-        System.out.print(h.currentSection);
-        System.out.print(h.homeSection);
-        h.currentSection = h.homeSection;
         int n=0;
         for (Case c:h.currentSection.getCases()){
             if(c.getHorses()[0]  == null && c.getHorses()[1] == null){
-                h.n = n;
-                h.x = c.getX();
-                h.y = c.getY();
+                h.setTo(h.homeSection,n);
                 break;
             }else{
                 n++;

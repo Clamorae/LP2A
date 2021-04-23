@@ -14,6 +14,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     private Player[] players;
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
+    private boolean waitForDice;
 
     public GameBoard() {//this constructor construct the fourth player, call the GUI constructor, create sections,and the dice panel
         Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
@@ -99,4 +100,12 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
                 "   sections=" + sections + "\n" +
                 '}' + "\n";
     }
+
+    public void game(){
+        gui.log("Open the game!");
+
+    }
+
+
+
 }
