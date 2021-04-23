@@ -7,30 +7,26 @@ public class GameManager {
     private static int dice;
     private static Gui gui;
 
-    GameManager(boolean cpu){
-        this.cpu=cpu;
-    }
-
     public static void nextTurn(){
         GameManager.threwDice = false;
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
-            if (GameManager.cpu){
+            if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[2]);
             }
         }else if(GameManager.turn.equals(Color.GREEN)){
             GameManager.turn=Color.YELLOW;
-            if (GameManager.cpu){
+            if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[3]);
             }
         }else if(GameManager.turn.equals(Color.YELLOW)){
             GameManager.turn=Color.BLUE;
-            if (GameManager.cpu){
+            if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[0]);
             }
         }else{
             GameManager.turn=Color.RED;
-            if (GameManager.cpu){
+            if (isCpu()){
                 cpuPlay(GameBoard.getPlayers()[1]);
             }
         }
@@ -44,6 +40,14 @@ public class GameManager {
         for(int i=0;i<4;i++){
             p.getHorse()[i].play();
         }
+    }
+
+    public static boolean isCpu() {
+        return cpu;
+    }
+
+    public static void setCpu(boolean cpu) {
+        GameManager.cpu = cpu;
     }
 
     public static int getDice() {
