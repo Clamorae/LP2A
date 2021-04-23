@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class GameBoard {//this class contain the GUI, the dice, the players and an hasmap of sections
+public class GameBoard {//this class contain the GUI, the dice, the players and an hashmap of sections
     public Gui gui;
     private final Random dice = new Random();
     private static int intDice;
@@ -90,6 +90,12 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
 
     public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
         intDice = (this.dice.nextInt(6))+1;
+        gui.log("You roll a "+intDice);
+        this.waitForDice=false;
+    }
+
+    public static int getDice(){
+        return intDice;
     }
 
     @Override

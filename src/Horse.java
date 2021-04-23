@@ -194,6 +194,7 @@ public class Horse {
 
     public void play(int dice){
         if (this.playable){
+            dice=GameBoard.getDice();
             moveForward(1);
             //this.playable = false;
         }
