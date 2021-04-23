@@ -7,8 +7,7 @@ public class Main{//this class contain the main method which will call create th
             }
         }
         gb.gui.addDice(gb);
-        gb.gui.log("Hello World !");
-        gb.gui.log("Au tour de bleu");
+        gb.game();
 
 
     }

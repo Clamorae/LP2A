@@ -101,8 +101,27 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
                 '}' + "\n";
     }
 
-    public void game(){
+    private int getMaxScore(){
+        int out = 0;
+        for(Player p:this.players){
+            if(p.getScore()>out){
+                out = p.getScore();
+            }
+        }
+        return out;
+    }
+
+
+    public Player game(){
         gui.log("Open the game!");
+        int maxscore = 0;
+        while(true){
+            for(Player p: this.players){
+                gui.log("Au tour de "+p.getStrColor());
+                this.waitForDice = true;
+                while(this.waitForDice){}
+            }
+        }
 
     }
 

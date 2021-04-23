@@ -31,4 +31,24 @@ public class Player {//the player class contain his horses, color and score, whe
                 "   horse=" + Arrays.toString(horse) + "\n" +
                 '}' + "\n";
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getStrColor() {
+        if(this.color.equals(Color.BLUE)){
+            return "Bleu";
+        }else if(this.color.equals(Color.RED)){
+            return "Rouge";
+        }else if(this.color.equals(Color.YELLOW)) {
+            return "Jaune";
+        }else{
+            return "Vert";
+        }
+    }
 }
