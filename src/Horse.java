@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
 
 public class Horse {
     private boolean playable;
@@ -111,13 +110,6 @@ public class Horse {
 
         }
         if(isCaseAvailable(newSection.getCases()[newN])){
-            if (!(newSection.getCases()[newN].getHorses()[0] == null)) {
-                if (!newSection.getCases()[newN].getHorses()[0].color.equals(this.color)) {
-                    if (!newSection.getCases()[newN].getType().equals(Ctype.SAFE)){
-                        backHome(newSection.getCases()[newN].getHorses()[0]);
-                    }
-                }
-            }
             setTo(newSection,newN);
             return true;
 
@@ -135,6 +127,13 @@ public class Horse {
         }else{
             while(dr != 0 && this.moveOne()){
                 dr--;
+            }
+        }
+        if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)) {
+            if (!this.currentSection.getCases()[this.n].getHorses()[0].color.equals(this.color)) {
+                if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
+                    backHome(this.currentSection.getCases()[this.n].getHorses()[0]);
+                }
             }
         }
     }
