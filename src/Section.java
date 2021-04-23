@@ -45,7 +45,7 @@ public class Section{//this class is where all the cases are set together and al
                 Vect finalPos;
                 for(int i = 0; i<4;i++){
                     finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
-                    this.cases[i] = new Case("Home", finalPos.x, finalPos.y);
+                    this.cases[i] = new Case(Ctype.HOME, finalPos.x, finalPos.y);
                 }
             }
             case "Ladder" -> {
@@ -54,7 +54,7 @@ public class Section{//this class is where all the cases are set together and al
                 Vect finalPos;
                 for (int i = 0; i < 6; i++) {
                     finalPos = getPosition(this.origin,this.x,this.y,200,yPos[i]);
-                    this.cases[i] = new Case("Safe", finalPos.x, finalPos.y);
+                    this.cases[i] = new Case(Ctype.SAFE, finalPos.x, finalPos.y);
                 }
             }
             case "Normal" -> {
@@ -64,13 +64,14 @@ public class Section{//this class is where all the cases are set together and al
                 Vect finalPos;
                 for (int i = 0; i < 9; i++) {
                     finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
-                    this.cases[i] = new Case("Normal", finalPos.x, finalPos.y);
+                    this.cases[i] = new Case(Ctype.NORMAL, finalPos.x, finalPos.y);
                 }
+                this.cases[1].setType(Ctype.SAFE);
                 finalPos = getPosition(this.origin,this.x,this.y,xPos[9], yPos[9]);
-                this.cases[9] = new Case("Safe", finalPos.x, finalPos.y);
+                this.cases[9] = new Case(Ctype.SAFE, finalPos.x, finalPos.y);
                 for (int i = 10; i < 13; i++) {
                     finalPos = getPosition(this.origin,this.x,this.y,xPos[i], yPos[i]);
-                    this.cases[i] = new Case("Normal", finalPos.x, finalPos.y);
+                    this.cases[i] = new Case(Ctype.NORMAL, finalPos.x, finalPos.y);
                 }
             }
         }

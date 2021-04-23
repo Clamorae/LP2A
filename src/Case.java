@@ -6,7 +6,7 @@ public class Case {
     private int X;
     private int Y;
 
-    Case (String type, int X, int Y){
+    Case (Ctype type, int X, int Y){
         this.type=type;
         this.X=X;
         this.Y=Y;
@@ -17,7 +17,7 @@ public class Case {
         return type;
     }
 
-    public void setType(type type) {
+    public void setType(Ctype type) {
         this.type = type;
     }
 

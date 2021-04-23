@@ -110,7 +110,7 @@ public class Horse {
         if(isCaseAvailable(newSection.getCases()[newN])){
             if (!(newSection.getCases()[newN].getHorses()[0] == null)) {
                 if (!newSection.getCases()[newN].getHorses()[0].color.equals(this.color)) {
-                    if (!newSection.getCases()[newN].getType().equals(type.SAFE)){
+                    if (!newSection.getCases()[newN].getType().equals(Ctype.SAFE)){
                         backHome(newSection.getCases()[newN].getHorses()[0]);
                     }
                 }
