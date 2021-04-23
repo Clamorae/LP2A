@@ -25,7 +25,6 @@ public class Main implements ActionListener {//this class contain the main metho
 
     public static void init(){
         Main.f = new Frame();
-        FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
         f.setSize(400,400);
         Button player = new Button("Play with friends");
         player.setSize(400,200);

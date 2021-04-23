@@ -146,7 +146,11 @@ public class Horse {
         if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)&&!(this.currentSection.getCases()[this.n].getHorses()[1] == null)) {
             if (!this.currentSection.getCases()[this.n].getHorses()[0].color.equals(this.color)) {
                 if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
-                    gui.log("You ate an opponent !");
+                    if(GameManager.isCpu()&&(!this.color.equals(Color.RED))){
+                        gui.log("You have been eaten !");
+                    }else {
+                        gui.log("You ate an opponent !");
+                    }
                     backHome(this.currentSection.getCases()[this.n].getHorses()[0]);
                 }
             }else if (!this.currentSection.getCases()[this.n].getHorses()[1].color.equals(this.color)) {
@@ -224,7 +228,7 @@ public class Horse {
         if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
             if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
-                gui.log("Nope.");
+                gui.log("Not playable.");
                 System.out.println(getSkip());
                 if (getSkip()<=4){
                     GameManager.nextTurn();
@@ -245,7 +249,11 @@ public class Horse {
 
             }
         }else{
-            gui.log("Not playable.");
+            if (!GameManager.isCpu()){
+                gui.log("Not playable.");
+            }else if (this.color.equals(Color.RED)){
+                gui.log("Not playable.");
+            }
         }
 
     }
