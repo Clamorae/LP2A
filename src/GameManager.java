@@ -3,12 +3,11 @@ import java.awt.*;
 public class GameManager {
     private static Color turn;
     private static boolean threwDice;
-    private static boolean played;
     private static int dice;
+    private static Gui gui;
 
     public static void nextTurn(){
         GameManager.threwDice = false;
-        GameManager.played = false;
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
         }else if(GameManager.turn.equals(Color.GREEN)){
@@ -18,6 +17,8 @@ public class GameManager {
         }else{
             GameManager.turn=Color.RED;
         }
+        gui.log("It's " + GameManager.getStrColor() + "'s turn");
+        gui.log("Please roll the dice");
     }
 
     public static int getDice() {
@@ -36,19 +37,27 @@ public class GameManager {
         GameManager.threwDice = threwDice;
     }
 
-    public static boolean isPlayed() {
-        return played;
-    }
-
-    public static void setPlayed(boolean played) {
-        GameManager.played = played;
-    }
-
     public static void setTurn(Color turn) {
         GameManager.turn = turn;
     }
 
     public static Color getTurn() {
         return turn;
+    }
+
+    public static void setGui(Gui gui) {
+        GameManager.gui = gui;
+    }
+
+    private static String getStrColor() {
+        if(GameManager.turn.equals(Color.BLUE)){
+            return "blue";
+        }else if(GameManager.turn.equals(Color.RED)){
+            return "red";
+        }else if(GameManager.turn.equals(Color.YELLOW)) {
+            return "yellow";
+        }else{
+            return "green";
+        }
     }
 }

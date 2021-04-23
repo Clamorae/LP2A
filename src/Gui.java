@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Gui extends JFrame {//This class is creating a Jframe using swing and will print the whole game in the screen and allow players to interact with it
     private JLayeredPane masterPan;
@@ -7,12 +10,13 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
     private JTextArea console;
     private int nOfLines;
     private JPanel dicePan;
+    private JPanel pass;
 
 
     public Gui(){//in the constructor we create different panel in superposition to print game board, horses, dice and terminal on the same picture
         super("Ludo Game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(600,600);
+        setSize(600,500);
         setResizable(false);
 
         this.masterPan = new JLayeredPane();
@@ -35,7 +39,7 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
         this.console = new JTextArea("       [BIENVENUE]");
         this.nOfLines = 1;
         console.setEditable(false);
-        console.setBounds(455,4,140,450);
+        console.setBounds(455,4,140,400);
         this.masterPan.add(this.console, Integer.valueOf(3));
 
 
@@ -44,6 +48,22 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
         dicePan.setLayout(null);
         this.dicePan.setBounds(190,200,450,460);
         this.masterPan.add(this.dicePan, Integer.valueOf(4));
+
+        this.pass = new JPanel();
+        pass.setOpaque(false);
+        this.pass.setBounds(455,405,50,50);
+        ImageIcon passPic = new ImageIcon("Images/next.png");
+        JLabel passLab = new JLabel(passPic);
+        passLab.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                GameManager.nextTurn();
+            }
+        });
+        this.pass.add(passLab);
+        this.masterPan.add(pass, Integer.valueOf(5));
+
+
 
         this.add(masterPan);
         setVisible(true);
@@ -60,7 +80,7 @@ public class Gui extends JFrame {//This class is creating a Jframe using swing a
 
     public void log(String str){//this method take a string and print it in the textbox to give info at user
         this.nOfLines++;
-        if (this.nOfLines >= 30){
+        if (this.nOfLines >= 26){
             this.nOfLines = 1;
             console.setText(">"+str);
         }else {

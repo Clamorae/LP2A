@@ -6,6 +6,7 @@ public class Player {//the player class contain his horses, color and score, whe
     private Color color;
     private int score;
     private Horse[] horse;
+    private Gui gui;
 
     public Player(Color color, HashMap<Color,Section[]> section){//in the constructor we create four horses int the home section for the player and initialize his score and his color
         this.horse = new Horse[4];
@@ -40,15 +41,4 @@ public class Player {//the player class contain his horses, color and score, whe
         this.score = score;
     }
 
-    public String getStrColor() {
-        if(this.color.equals(Color.BLUE)){
-            return "Bleu";
-        }else if(this.color.equals(Color.RED)){
-            return "Rouge";
-        }else if(this.color.equals(Color.YELLOW)) {
-            return "Jaune";
-        }else{
-            return "Vert";
-        }
-    }
 }

@@ -12,6 +12,7 @@ public class Horse {
     private Section homeSection;
     private int n;
     private boolean isWin;
+    private Gui gui;
     JPanel horsePan;
 
     public Horse(int x, int y, Section startSec, int n, Color color){
@@ -130,6 +131,7 @@ public class Horse {
         if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)&&!(this.currentSection.getCases()[this.n].getHorses()[1] == null)) {
             if (!this.currentSection.getCases()[this.n].getHorses()[0].color.equals(this.color)) {
                 if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
+                    gui.log("You ate an opponent !");
                     backHome(this.currentSection.getCases()[this.n].getHorses()[0]);
                 }
             }else if (!this.currentSection.getCases()[this.n].getHorses()[1].color.equals(this.color)) {
@@ -138,12 +140,24 @@ public class Horse {
                 }
             }
         }
+        Horse[] hr = this.currentSection.getCases()[this.n].getHorses();
+        for(Horse h:hr){
+            if(h != this && h != null){
+                gui.top(this);
+                this.y-=3;
+                this.x+=3;
+                this.moveSprite();
+                gui.bottom(h);
+            }
+        }
+
     }
 
     private void backHome(Horse h){
         int n=0;
-        for (Case c:h.currentSection.getCases()){
+        for (Case c:h.homeSection.getCases()){
             if(c.getHorses()[0]  == null && c.getHorses()[1] == null){
+
                 h.setTo(h.homeSection,n);
                 break;
             }else{
@@ -193,7 +207,19 @@ public class Horse {
     public void play(){
         if ((this.playable)&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
             moveForward(GameManager.getDice());
-            GameManager.nextTurn();
+            gui.log("You played");
+            if(GameManager.getDice() == 6){
+                gui.log("Play again !");
+                GameManager.setThrewDice(false);
+            }else {
+                GameManager.nextTurn();
+            }
+        }else{
+            gui.log("Nope.");
         }
+    }
+
+    public void setGui(Gui gui) {
+        this.gui = gui;
     }
 }

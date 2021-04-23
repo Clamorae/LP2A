@@ -87,12 +87,12 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     }
 
     public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
-        if (GameManager.isThrewDice()==false){
+        if (!GameManager.isThrewDice()){
             GameManager.setDice((this.dice.nextInt(6))+1);
-            gui.log("You roll a "+GameManager.getDice());
+            gui.log("You rolled a "+GameManager.getDice());
             GameManager.setThrewDice(true);
         }else{
-            gui.log("nop");
+            gui.log("Nope.");
         }
     }
 
@@ -113,12 +113,6 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             }
         }
         return out;
-    }
-
-
-    public void game(){
-        gui.log("Open the game!");
-        int maxscore = 0;
     }
 
 
