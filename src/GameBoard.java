@@ -8,8 +8,8 @@ import java.util.Random;
 
 
 public class GameBoard {//this class contain the GUI, the dice, the players and an hashmap of sections
-    public Gui gui;
-    private final Random dice = new Random();
+    public static Gui gui;
+    private static final Random dice = new Random();
     private static Player[] players;
     public static HashMap<Color, Section[]> sections;
     JPanel dicePan;
@@ -81,13 +81,13 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
         return dicePan;
     }
 
-    public void rollDice() {// this method will change of value of intDice for a value between 1 and 6
+    public static void rollDice() {// this method will change of value of intDice for a value between 1 and 6
         if (!GameManager.isThrewDice()){
-            GameManager.setDice((this.dice.nextInt(6))+1);
-            gui.log("You roll a "+GameManager.getDice());
+            GameManager.setDice((GameBoard.dice.nextInt(6))+1);
+            GameBoard.gui.log("You roll a "+GameManager.getDice());
             GameManager.setThrewDice(true);
         }else{
-            gui.log("nop");
+            GameBoard.gui.log("nop");
         }
     }
 

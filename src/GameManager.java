@@ -38,6 +38,7 @@ public class GameManager {
     }
 
     public static void cpuPlay(Player p){
+        GameBoard.rollDice();
         for(int i=0;i<4;i++){
             p.getHorse()[i].play();
         }
