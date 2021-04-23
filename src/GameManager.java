@@ -6,6 +6,10 @@ public class GameManager {
     private static boolean threwDice;
     private static int dice;
     private static Gui gui;
+    private static int bScore;
+    private static int rScore;
+    private static int gScore;
+    private static int yScore;
 
     public static void nextTurn(){
         GameManager.threwDice = false;
@@ -87,6 +91,32 @@ public class GameManager {
             return "yellow";
         }else{
             return "green";
+        }
+    }
+
+    public static void initScore(){
+        GameManager.bScore = 0;
+        GameManager.rScore = 0;
+        GameManager.gScore = 0;
+        GameManager.yScore = 0;
+    }
+
+    public static void addScore(Color c){
+        if(c.equals(Color.BLUE)){
+            GameManager.bScore++;
+        }else if(c.equals(Color.RED)){
+            GameManager.rScore++;
+        }else if(c.equals(Color.GREEN)){
+            GameManager.gScore++;
+        }else{
+            GameManager.yScore++;
+        }
+    }
+
+    public static void checkForWin() {
+        if(GameManager.bScore==4||GameManager.rScore==4||GameManager.gScore==4||GameManager.yScore==4){
+            System.out.println("The game is over, thanks for playing");
+            System.exit(0);
         }
     }
 }

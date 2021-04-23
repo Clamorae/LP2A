@@ -101,7 +101,9 @@ public class Horse {
         }
         this.isWin = true;
         this.horsePan.setVisible(false);
-        gui.log("Horse won !");
+        gui.log("Horse in!");
+        GameManager.addScore(this.color);
+        GameManager.checkForWin();
     }
 
     public boolean moveOne(){
@@ -124,16 +126,14 @@ public class Horse {
             return true;
 
         }else{
-            System.out.println("erreur");
             return false;
         }
     }
 
     public boolean moveForward(int dr){
         if(this.currentSection.getType().equals("Home")){
-            if(dr == 6){
+            if(dr == 6 && (currentSection.next.getCases()[1].getHorses()[0] == null || currentSection.next.getCases()[1].getHorses()[1] == null)){
                 setTo(this.currentSection.next, 1);
-                return true;
             }else{
                 return false;
             }

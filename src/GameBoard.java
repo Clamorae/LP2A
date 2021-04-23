@@ -98,17 +98,4 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
                 "   sections=" + sections + "\n" +
                 '}' + "\n";
     }
-
-    private int getMaxScore(){
-        int out = 0;
-        for(Player p:GameBoard.players){
-            if(p.getScore()>out){
-                out = p.getScore();
-            }
-        }
-        return out;
-    }
-
-
-
 }

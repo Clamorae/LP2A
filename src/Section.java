@@ -49,10 +49,10 @@ public class Section{//this class is where all the cases are set together and al
                 }
             }
             case "Ladder" -> {
-                this.cases = new Case[6];
-                int[] yPos = {173,145,118-3,89-3,63-3,43};
+                this.cases = new Case[5];
+                int[] yPos = {173,145,118-3,89-3,63-3};
                 Vect finalPos;
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 5; i++) {
                     finalPos = getPosition(this.origin,this.x,this.y,200,yPos[i]);
                     this.cases[i] = new Case(Ctype.SAFE, finalPos.x, finalPos.y);
                 }
