@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 public class Horse {
     private boolean playable;
@@ -10,6 +11,7 @@ public class Horse {
     private int y;
     private Color color;
     private Section currentSection;
+    private Section homeSection;
     private int n;
     private boolean isWin;
     JPanel horsePan;
@@ -21,6 +23,7 @@ public class Horse {
         this.y = y;
         this.color = color;
         this.currentSection = startSec;
+        this.homeSection = startSec;
         this.n = n;
         this.isWin = false;
         ImageIcon horsePic;
@@ -136,11 +139,22 @@ public class Horse {
         }
     }
 
-    private void backHome(Horse horse/*HashMap< Color,Section[]>section*/){
-        //this.currentSection=section.get(this.color)[0];
-        horse.x=0;
-        horse.y=0;
-        horse.moveSprite();
+    private void backHome(Horse h){
+        System.out.print(h.currentSection);
+        System.out.print(h.homeSection);
+        h.currentSection = h.homeSection;
+        int n=0;
+        for (Case c:h.currentSection.getCases()){
+            if(c.getHorses()[0]  == null && c.getHorses()[1] == null){
+                h.n = n;
+                h.x = c.getX();
+                h.y = c.getY();
+                break;
+            }else{
+                n++;
+            }
+        }
+        h.moveSprite();
     }
 
     public void moveSprite(){

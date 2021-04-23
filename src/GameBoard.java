@@ -27,6 +27,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
             secArray[0] = new Section("Home", temp, secArray[1],null);
             sections.put(temp, secArray);
             players[i]=new Player(temp,sections);
+
             i++;
         }
         Section blue = this.sections.get(Color.BLUE)[1];
@@ -48,22 +49,22 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
                 System.out.println(intDice);
                 switch (intDice){
                     case 1:
-                        diceLab.setIcon(new ImageIcon("images/1.png"));;
+                        diceLab.setIcon(new ImageIcon("Images/1.png"));;
                         break;
                     case 2:
-                        diceLab.setIcon(new ImageIcon("images/2.png"));
+                        diceLab.setIcon(new ImageIcon("Images/2.png"));
                         break;
                     case 3:
-                        diceLab.setIcon(new ImageIcon("images/3.png"));
+                        diceLab.setIcon(new ImageIcon("Images/3.png"));
                         break;
                     case 4:
-                        diceLab.setIcon(new ImageIcon("images/4.png"));
+                        diceLab.setIcon(new ImageIcon("Images/4.png"));
                         break;
                     case 5:
-                        diceLab.setIcon(new ImageIcon("images/5.png"));;
+                        diceLab.setIcon(new ImageIcon("Images/5.png"));;
                         break;
                     default:
-                        diceLab.setIcon(new ImageIcon("images/6.png"));
+                        diceLab.setIcon(new ImageIcon("Images/6.png"));
                 }
             }
         });
