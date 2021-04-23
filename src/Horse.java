@@ -129,10 +129,14 @@ public class Horse {
                 dr--;
             }
         }
-        if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)) {
+        if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)&&!(this.currentSection.getCases()[this.n].getHorses()[1] == null)) {
             if (!this.currentSection.getCases()[this.n].getHorses()[0].color.equals(this.color)) {
                 if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
                     backHome(this.currentSection.getCases()[this.n].getHorses()[0]);
+                }
+            }else if (!this.currentSection.getCases()[this.n].getHorses()[1].color.equals(this.color)) {
+                if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
+                    backHome(this.currentSection.getCases()[this.n].getHorses()[1]);
                 }
             }
         }
@@ -190,6 +194,7 @@ public class Horse {
 
     public void play(int dice){
         if (this.playable){
+            dice=GameBoard.getDice();
             moveForward(1);
             //this.playable = false;
         }
