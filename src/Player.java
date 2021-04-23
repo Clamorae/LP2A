@@ -15,6 +15,7 @@ public class Player {//the player class contain his horses, color and score, whe
         Section home = section.get(color)[0];
         for (int i = 0; i<4; i++){
             horse[i]=new Horse(home.getCases()[i].getX(),home.getCases()[i].getY(),home,i,this.color);
+            home.getCases()[i].getHorses()[0] = horse[i];
         }
     }
 
