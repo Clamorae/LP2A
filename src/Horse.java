@@ -86,13 +86,13 @@ public class Horse {
         if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))/*||true*/){
             if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
-                gui.log("Nope.");
+                if (!GameManager.isCpu()||(this.color.equals(Color.RED))){
+                    gui.log("Nope.");
+                }
                 if (getSkip()==4){
-                    gui.log("get passed");
                     GameManager.nextTurn();
                 }
             }else{
-                gui.log("You played");
                 if(GameManager.getDice() == 6){
                     gui.log("Play again !");
                     gui.log("Please re-roll");
