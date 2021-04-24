@@ -70,7 +70,7 @@ public class GameBoard {//this class contain the GUI, the dice, the players and 
     }
 
     public static void rollDice() {// this method will change of value of intDice for a value between 1 and 6
-        if (!GameManager.isThrewDice()){
+        if (!GameManager.isThrewDice()/*||true*/){
             GameManager.setDice((GameBoard.dice.nextInt(6))+1);
             GameBoard.gui.log("It's a "+GameManager.getDice());
             GameManager.setThrewDice(true);

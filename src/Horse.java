@@ -83,7 +83,7 @@ public class Horse {
     }
 
     public void play(){
-        if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
+        if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))/*||true*/){
             if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
                 gui.log("Not playable.");
@@ -128,7 +128,7 @@ public class Horse {
                 dr--;
             }
         }
-        if (!(this.currentSection.getCases()[this.n].getHorses()[0] == null)&&!(this.currentSection.getCases()[this.n].getHorses()[1] == null)) {
+        if (this.currentSection.getCases()[this.n].getHorses()[0] != null &&!(this.currentSection.getCases()[this.n].getHorses()[1] == null)) {
             if (!this.currentSection.getCases()[this.n].getHorses()[0].color.equals(this.color)) {
                 if (!this.currentSection.getCases()[this.n].getType().equals(Ctype.SAFE)){
                     if(GameManager.isCpu()&&(!this.color.equals(Color.RED))){
@@ -169,6 +169,7 @@ public class Horse {
             newN = 0;
             if(newSection == null){
                 win();
+                gui.log("Horse in !");
                 return false;
             }
 
@@ -208,6 +209,8 @@ public class Horse {
     }
 
     private  boolean isCaseAvailable(Case _case){
+        if(_case.getHorses()[0] == null || _case.getHorses()[1] == null){
+        }
         return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
     }
 
@@ -245,6 +248,7 @@ public class Horse {
         for(int i=0;i<2;i++){
             if (array[i] == null){
                 array[i] = this;
+                break;
             }
         }
     }
