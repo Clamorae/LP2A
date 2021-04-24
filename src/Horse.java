@@ -86,9 +86,9 @@ public class Horse {
         if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))){
             if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
-                gui.log("Not playable.");
-                System.out.println(getSkip());
-                if (getSkip()<=4){
+                gui.log("Nope.");
+                if (getSkip()==4){
+                    gui.log("get passed");
                     GameManager.nextTurn();
                 }
             }else{
@@ -108,9 +108,9 @@ public class Horse {
             }
         }else{
             if (!GameManager.isCpu()){
-                gui.log("Not playable.");
+                gui.log("Nope.");
             }else if (this.color.equals(Color.RED)){
-                gui.log("Not playable.");
+                gui.log("Nope.");
             }
         }
 

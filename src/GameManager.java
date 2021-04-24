@@ -13,6 +13,7 @@ public class GameManager {
 
     public static void nextTurn(){
         GameManager.threwDice = false;
+        Horse.setSkip(0);
         if(GameManager.turn.equals(Color.RED)){
             GameManager.turn=Color.GREEN;
             gui.log("It's " + GameManager.getStrColor() + "'s turn");
@@ -42,9 +43,6 @@ public class GameManager {
             gui.log("It's " + GameManager.getStrColor() + "'s turn");
             gui.log("Please roll the dice");
         }
-        Horse.setSkip(0);
-
-
     }
 
     public static void cpuPlay(Player p){
