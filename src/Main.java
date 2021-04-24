@@ -12,7 +12,8 @@ public class Main implements ActionListener {//this class contain the main metho
     }
 
     public static void launchGame(){
-        GameBoard gb = new GameBoard();
+        Color[] colorArray = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
+        GameBoard gb = new GameBoard(colorArray);
         for(Player p : GameBoard.getPlayers()){
             for(Horse h :p.getHorse()){
                 h.setGui(GameBoard.gui);
@@ -21,8 +22,25 @@ public class Main implements ActionListener {//this class contain the main metho
         }
         GameBoard.gui.addDice(gb);
         GameManager.setGui(GameBoard.gui);
-        GameManager.setTurn(Color.BLUE);
+        if(!GameManager.isCpu()){
+            int higher=0;
+            int test;
+            int player=0;
+            for(int i=0;i<4;i++){
+                test= (int) (Math.random()*6);
+                GameManager.setTurn(colorArray[i]);
+                GameBoard.gui.log((i+1)+"th roll "+test);
+                if(test>higher){
+                    higher=test;
+                    player=i;
+                }
+            }
+            GameManager.setTurn(colorArray[player]);
+        }else{
+            GameManager.setTurn(Color.BLUE);
+        }
         GameManager.nextTurn();
+
     }
 
     public static void init(){

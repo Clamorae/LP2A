@@ -88,7 +88,7 @@ public class GameManager {
         GameManager.gui = gui;
     }
 
-    private static String getStrColor() {
+    public static String getStrColor() {
         if(GameManager.turn.equals(Color.BLUE)){
             return "blue";
         }else if(GameManager.turn.equals(Color.RED)){
