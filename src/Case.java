@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
-public class Case {
-    private Object type;//this class is used for each case in the game board, it contain it's position, the number of horses on it and it's type
+public class Case {//this class is used for each case in the game board, it contain it's position, the number of horses on it and it's type
+    private Object type;
     private final Horse[] horses;
     private final int X;
     private final int Y;
