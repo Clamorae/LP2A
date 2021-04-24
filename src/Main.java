@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Main implements ActionListener {//this class contain the main method which will call create the Game board and use it to initialize everything else
     static Frame f;
@@ -34,6 +36,11 @@ public class Main implements ActionListener {//this class contain the main metho
         f.add(cpu);
         player.addActionListener(new Main());
         cpu.addActionListener(new Main());
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
         f.setVisible(true);
     }
 
