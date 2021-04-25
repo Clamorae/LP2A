@@ -209,8 +209,6 @@ public class Horse {
     }
 
     private  boolean isCaseAvailable(Case _case){
-        if(_case.getHorses()[0] == null || _case.getHorses()[1] == null){
-        }
         return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
     }
 
