@@ -16,7 +16,7 @@ public class Horse {
     private static int skip;
     JPanel horsePan;
 
-    public Horse(int x, int y, Section startSec, int n, Color color){
+    public Horse(int x, int y, Section startSec, int n, Color color){//when a horse is created we also create his label and print it
         this.x = x;
         this.playable = true;
         this.y = y;
@@ -70,7 +70,7 @@ public class Horse {
         this.playable = playable;
     }
 
-    private boolean isCaseReal(Section section, int n){
+    private boolean isCaseReal(Section section, int n){// this function will check if the case is out of the array limit or not
         return section.getCases().length > n;
     }
 
@@ -82,7 +82,7 @@ public class Horse {
         this.gui = gui;
     }
 
-    public void play(){
+    public void play(){//this function will check if the player is allow to play this horse and then move it, if the horse can't move four time it will pass the player turn
         if ((this.isPlayable())&&(GameManager.isThrewDice())&&(this.color.equals(GameManager.getTurn()))/*||true*/){
             if (!moveForward(GameManager.getDice())){
                 setSkip(getSkip()+1);
@@ -116,7 +116,7 @@ public class Horse {
 
     }
 
-    public boolean moveForward(int dr){
+    public boolean moveForward(int dr){// this function take a number in argument and will check if the horse can do the move, if he can't it will return false
         if(this.currentSection.getType().equals("Home")){
             if(dr == 6 && (currentSection.next.getCases()[1].getHorses()[0] == null || currentSection.next.getCases()[1].getHorses()[1] == null)){
                 setTo(this.currentSection.next, 1);
@@ -158,7 +158,7 @@ public class Horse {
 
     }
 
-    public boolean moveOne(){
+    public boolean moveOne(){//for each movement this method will be called, it will check which is the next case for the horse and then call another method to move him
         Section newSection;
         int newN;
         if(isCaseReal(this.currentSection,this.n+1)){
@@ -183,7 +183,7 @@ public class Horse {
         }
     }
 
-    private Section getNextSection(Section current, Color color){
+    private Section getNextSection(Section current, Color color){// this section allow the moveOne() method to know where the horse need to go when he is at the end of the array
         if(current.next == null){
             return null;
         }else if (current.next.getColor().equals(color)){
@@ -193,7 +193,7 @@ public class Horse {
         }
     }
 
-    public void win(){
+    public void win(){// this method is called when an horse is on the top of the ladder, he will disappear and increase the player score
         Horse[] horses = this.currentSection.getCases()[n].getHorses();
         for(int i = 0; i<2; i++){
             if(horses[i] == this){
@@ -212,7 +212,7 @@ public class Horse {
         return _case.getHorses()[0] == null || _case.getHorses()[1] == null;
     }
 
-    private void backHome(Horse h){
+    private void backHome(Horse h){// this function will take an horse has argument and set his position to his home when he get eaten by another horse
         int n=0;
         for (Case c:h.homeSection.getCases()){
             if(c.getHorses()[0]  == null && c.getHorses()[1] == null){
@@ -230,7 +230,7 @@ public class Horse {
         this.horsePan.setLocation(this.x,this.y);
     }
 
-    public void setTo(Section section, int n){
+    public void setTo(Section section, int n){//this function will check if the case in the section is free, and then set the horse at the right place in his new case
         Horse[] array = this.currentSection.getCases()[this.n].getHorses();
         for(int i=0;i<2;i++){
             if (array[i] == this){
